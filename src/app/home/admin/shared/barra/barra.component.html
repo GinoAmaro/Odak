@@ -1,0 +1,11 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+    <div class="navbar-nav">
+      <a *ngFor="let plan of ruta" class="nav-item nav-link active" [routerLink]="plan.ruta">{{plan.descripcion}}</a>
+      <button class="nav-item nav-link" type="submit" (click)="cerrarSesion()">Cerrar Sesión</button>
+      <span *ngIf="auth">{{auth.nombre}} {{auth.apellidos}}</span>
+    </div>
+  </div>
+</nav>
+
+<pre>{{auth|json}}</pre>

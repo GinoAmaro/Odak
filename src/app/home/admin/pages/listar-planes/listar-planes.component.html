@@ -1,0 +1,29 @@
+<div class="prueba">
+    <div class="card">
+        <div class="card-header">Planes</div>
+        <div class="card-body">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Descripción</th>
+                        <th>Costo</th>
+                        <th>Cantidad de Cuentas</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let plan of planes; let idControl=index">
+                        <td>{{plan.id}}</td>
+                        <td>{{plan.descripcion}}</td>
+                        <td>{{plan.costo}}</td>
+                        <td>{{plan.usuario_cantidad}}</td>
+                        <td><a class="btn btn-outline-info" routerLink="../editar-plan/{{plan.id}}">Editar</a> |
+                            <button class="btn btn-outline-danger" (click)="borrar(plan.id, idControl)">Borrar</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

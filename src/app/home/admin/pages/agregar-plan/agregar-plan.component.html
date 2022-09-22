@@ -1,0 +1,31 @@
+<div class="card">
+    <div class="card-header">
+        {{titulo}} Plan
+    </div>
+    <div class="card-body">
+        <form ngNativeValidate [formGroup]="formularioUsuario" (ngSubmit)="enviarDatos()" autocomplete="off">
+
+            <div class="mb-3">
+                <label for="" class="form-label">descripción:</label>
+                <input required type="text" class="form-control" placeholder="Describa el plan"
+                    formControlName="descripcion">
+            </div>
+            <div class="mb-3">
+                <label for="" class="form-label">costo:</label>
+                <input required type="text" class="form-control" placeholder="Ingrese costo" formControlName="costo">
+            </div>
+            <div class="mb-3">
+                <label for="" class="form-label">detalle:</label>
+                <input required type="text" class="form-control" placeholder="Ingrese un detalle"
+                    formControlName="detalle">
+            </div>
+            <div class="mb-3">
+                <label for="" class="form-label">Cantidad de Usuarios:</label>
+                <input required type="text" class="form-control"
+                    placeholder="Indique la cantidad de cuentas que otorgará de manera gratuita."
+                    formControlName="usuario_cantidad">
+            </div>
+            <button type="submit" class="btn btn-primary">{{titulo}}</button>
+        </form>
+    </div>
+</div>
