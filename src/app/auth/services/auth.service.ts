@@ -30,9 +30,15 @@ export class AuthService {
 
     const datos = localStorage.getItem('token');
 
-    return this.http.get<Usuario>(this.baseUrl + '?idUsuario=' + datos)
+    return this.http.get<Usuario[]>(this.baseUrl + '?idUsuario=' + datos)
       .pipe(
-        map(auth => {
+        map(resp => {
+          this._auth = {
+            id: resp[0].id,
+            nombre: resp[0].nombre,
+            apellidos: resp[0].apellidos,
+            correo: resp[0].correo
+          }
           return true
         })
       );
