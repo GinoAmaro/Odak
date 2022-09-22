@@ -1,7 +1,9 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { AuthService } from '../../services/auth.service';
 import { FormGroup, FormBuilder } from '@angular/forms';
+import { Title } from '@angular/platform-browser';
+
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-login',
@@ -9,15 +11,19 @@ import { FormGroup, FormBuilder } from '@angular/forms';
   styles: [
   ]
 })
-export class LoginComponent {
+export class LoginComponent implements OnInit {
 
   formularioLogin: FormGroup = this.fb.group({
     correo: ['emzero1@gmail.com'],
     contrasena: ['123']
   })
 
-  constructor(private fb: FormBuilder, private router: Router, private authservice: AuthService) {
+  constructor(private fb: FormBuilder, private router: Router, private authservice: AuthService, private titulo: Title) {
+  }
 
+
+  ngOnInit(): void {
+    this.titulo.setTitle('Iniciar Sesion');
   }
 
   login() {
@@ -28,6 +34,7 @@ export class LoginComponent {
       .subscribe(resp => {
         if (resp[0].id) {
           this.router.navigateByUrl('/home/admin');
+          this.titulo.setTitle('Home - Admin');
         }
       });
 
