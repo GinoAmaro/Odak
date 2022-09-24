@@ -6,7 +6,7 @@ export interface Usuario {
     contrasena: string;
     empresa:   string;
     tipo:       string;
-    estado:     string;
+    estado:     boolean;
 }
 
 export interface Login{

@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from "@angular/common/http";
 import { Observable, of, tap } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { catchError, map } from 'rxjs/operators';
 
 import { Usuario, Login } from '../interface/auth';
 import { environment } from 'src/environments/environment';
@@ -23,8 +23,6 @@ export class AuthService {
   verificaAutenticacion(): Observable<boolean> {
 
     if (!localStorage.getItem('token')) {
-      console.log(false);
-
       return of(false);
     }
 
@@ -46,7 +44,7 @@ export class AuthService {
 
   }
 
-  login(correo: string, contrasena: string): Observable<Usuario[]> {
+  login(correo: string, contrasena: string) {
 
     const url = this.baseUrl + "?login=";
     const datos = { correo, contrasena };
@@ -54,14 +52,19 @@ export class AuthService {
     return this.http.post<Usuario[]>(url, datos)
       .pipe(
         tap(resp => {
-          this._auth = {
-            id: resp[0].id,
-            nombre: resp[0].nombre,
-            apellidos: resp[0].apellidos,
-            correo: resp[0].correo
+          if (resp[0]) {
+            this._auth = {
+              id: resp[0].id,
+              nombre: resp[0].nombre,
+              apellidos: resp[0].apellidos,
+              correo: resp[0].correo
+            },
+              localStorage.setItem('token', resp[0].id)
           }
-        }),
-        tap(resp => localStorage.setItem('token', resp[0].id))
+        }
+        ),
+        map(resp => resp),
+        catchError(err => of(err.error.mensaje))
       )
   }
 
