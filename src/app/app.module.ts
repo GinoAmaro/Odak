@@ -12,7 +12,7 @@ import { TarjetaEmpresaComponent } from './tarjeta/pages/tarjeta-empresa/tarjeta
   declarations: [
     AppComponent,
     ErrorPageComponent,
-    TarjetaEmpresaComponent
+    TarjetaEmpresaComponent,
   ],
   imports: [
     BrowserModule,
