@@ -30,18 +30,24 @@ export class AuthService {
 
     return this.http.get<Usuario[]>(this.baseUrl + '?idUsuario=' + datos)
       .pipe(
-        map(resp => {
-          this._auth = {
-            id: resp[0].id,
-            nombre: resp[0].nombre,
-            apellidos: resp[0].apellidos,
-            correo: resp[0].correo
+        tap(resp => {
+          if (resp[0]) {
+            this._auth = {
+              id: resp[0].id,
+              nombre: resp[0].nombre,
+              apellidos: resp[0].apellidos,
+              correo: resp[0].correo,
+              token: resp[0].token
+            },
+              localStorage.setItem('token', resp[0].token)
           }
-          return true
-        })
+        }
+        ),
+        map(resp => {
+          return true;
+        }),
+        catchError(err => of(err.error.mensaje, localStorage.clear()))
       );
-
-
   }
 
   login(correo: string, contrasena: string) {
@@ -57,9 +63,10 @@ export class AuthService {
               id: resp[0].id,
               nombre: resp[0].nombre,
               apellidos: resp[0].apellidos,
-              correo: resp[0].correo
+              correo: resp[0].correo,
+              token: resp[0].token
             },
-              localStorage.setItem('token', resp[0].id)
+              localStorage.setItem('token', resp[0].token)
           }
         }
         ),
@@ -67,6 +74,7 @@ export class AuthService {
         catchError(err => of(err.error.mensaje))
       )
   }
+
 
   logOut() {
     localStorage.clear();

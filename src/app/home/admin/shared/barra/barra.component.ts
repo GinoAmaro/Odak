@@ -37,7 +37,6 @@ export class BarraComponent implements OnInit {
 
   cerrarSesion() {
     this.router.navigateByUrl('/auth')
-    this.authservice.logOut()
   }
 
 }
