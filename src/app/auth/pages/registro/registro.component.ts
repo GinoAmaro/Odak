@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-registro',
@@ -12,10 +13,12 @@ import { Router } from '@angular/router';
 export class RegistroComponent implements OnInit {
 
 
-  constructor(private titulo: Title, private fb: FormBuilder, private router: Router) { }
+  constructor(private titulo: Title, private fb: FormBuilder, private router: Router, private authservice: AuthService) { }
 
   formularioRegistro: FormGroup = this.fb.group({
-    correo: ['emzero1@gmail.com', [Validators.required, Validators.email]],
+    correo: ['emzero2@gmail.com', [Validators.required, Validators.email]],
+    nombre: ['Paolo', [Validators.required, Validators.minLength(3)]],
+    apellidos: ['Amaro Valladares', [Validators.required, Validators.minLength(3)]],
     contrasena: ['123', [Validators.required, Validators.minLength(3)]],
     confirmar: ['123', [Validators.required, Validators.minLength(3)]]
   })
@@ -26,13 +29,13 @@ export class RegistroComponent implements OnInit {
 
   registrar() {
 
-    const { correo, contrasena, confirmar } = this.formularioRegistro.value;
+    const dato = this.formularioRegistro.value;
 
-    console.log(this.formularioRegistro.value);
-    console.log(this.formularioRegistro.valid);
+    this.authservice.registrarUsuario(dato)
+      .subscribe(resp => console.log(resp)
+      )
 
-    this.router.navigateByUrl('auth/login');
-
+    // this.router.navigateByUrl('auth/login');
 
   }
 

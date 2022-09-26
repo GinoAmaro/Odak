@@ -36,7 +36,8 @@ export class BarraComponent implements OnInit {
   ngOnInit(): void { }
 
   cerrarSesion() {
-    this.router.navigateByUrl('/auth')
+    this.router.navigateByUrl('/auth');
+    this.authservice.logOut();
   }
 
 }

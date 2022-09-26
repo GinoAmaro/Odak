@@ -75,6 +75,13 @@ export class AuthService {
       )
   }
 
+  registrarUsuario(datoUsuario: Usuario): Observable<Usuario> {
+
+    const url = this.baseUrl + "?agregarUsuario=";
+
+    return this.http.post<Usuario>(url, datoUsuario)
+  }
+
 
   logOut() {
     localStorage.clear();
