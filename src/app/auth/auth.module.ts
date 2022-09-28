@@ -6,6 +6,7 @@ import { AuthRoutingModule } from './auth-routing.module';
 import { CarrouselLoginComponent } from './components/carrousel-login/carrousel-login.component';
 import { LoginComponent } from './pages/login/login.component';
 import { RegistroComponent } from './pages/registro/registro.component';
+import { RegistroEmpresaComponent } from './pages/registro-empresa/registro-empresa.component';
 
 
 
@@ -14,7 +15,8 @@ import { RegistroComponent } from './pages/registro/registro.component';
   declarations: [
     LoginComponent,
     RegistroComponent,
-    CarrouselLoginComponent
+    CarrouselLoginComponent,
+    RegistroEmpresaComponent
   ],
   imports: [
     CommonModule,

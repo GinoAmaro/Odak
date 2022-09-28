@@ -42,7 +42,7 @@ export class RegistroComponent implements OnInit {
             text: "Registra tu PYME ahora",
             imageUrl: '../../../assets/img/login/rayo-de-risa.svg',
             imageHeight: '100',
-            footer: 'Ya eres parte de ODAK',
+            footer: 'Ya eres parte de &nbsp <b>ODAK</b>',
             showCancelButton: true,
             confirmButtonColor: '#2f3e46',
             cancelButtonColor: '#84a98c',
@@ -50,7 +50,9 @@ export class RegistroComponent implements OnInit {
             cancelButtonText: 'Despues',
           }).then((result) => {
             if (result.isConfirmed) {
-              this.router.navigateByUrl('auth/login');
+              this.router.navigateByUrl('auth/registro-empresa');
+            } else if (result.isDismissed) {
+              this.router.navigateByUrl('home/empresa');
             }
           })
 

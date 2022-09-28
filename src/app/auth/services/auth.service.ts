@@ -81,7 +81,7 @@ export class AuthService {
 
     return this.http.post<Usuario>(url, datoUsuario)
       .pipe(
-        tap(resp => { console.log(resp);
+        tap(resp => {
         }),
         map(resp => resp),
         catchError(err => of(err.error.mensaje))

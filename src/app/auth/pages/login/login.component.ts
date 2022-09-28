@@ -39,7 +39,7 @@ export class LoginComponent {
           this.router.navigateByUrl('/home/empresa');
         } else {
           Swal.fire({
-            title: 'Error',
+            title: '¡Oh, vaya!',
             text: resp.mensaje,
             imageUrl: '../../../assets/img/login/rayo-de-tristeza.svg',
             imageHeight: '100',
