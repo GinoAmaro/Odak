@@ -9,6 +9,7 @@ import { RegistroComponent } from './pages/registro/registro.component';
 
 
 
+
 @NgModule({
   declarations: [
     LoginComponent,

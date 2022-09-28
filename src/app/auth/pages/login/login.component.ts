@@ -29,10 +29,23 @@ export class LoginComponent {
     this.authservice.login(correo, contrasena)
       .subscribe(resp => {
         if (!resp.mensaje) {
-          Swal.fire({ title: 'Bienvenido', text: resp[0].nombre + ' ' + resp[0].apellidos, icon: 'success', timer: 1500, showConfirmButton: false })
-          this.router.navigateByUrl('/home/admin');
+          Swal.fire({
+            title: 'Bienvenido',
+            text: resp[0].nombre + ' ' + resp[0].apellidos,
+            icon: 'success',
+            timer: 1500,
+            showConfirmButton: false
+          })
+          this.router.navigateByUrl('/home/empresa');
         } else {
-          Swal.fire({ title: 'Error', text: resp.mensaje, icon: 'error', timer: 2000,showConfirmButton: false })
+          Swal.fire({
+            title: 'Error',
+            text: resp.mensaje,
+            imageUrl: '../../../assets/img/login/rayo-de-tristeza.svg',
+            imageHeight: '100',
+            timer: 2000,
+            showConfirmButton: false
+          })
         }
       });
 

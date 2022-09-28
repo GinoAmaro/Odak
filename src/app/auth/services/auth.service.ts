@@ -75,11 +75,17 @@ export class AuthService {
       )
   }
 
-  registrarUsuario(datoUsuario: Usuario): Observable<Usuario> {
+  registrarUsuario(datoUsuario: Usuario) {
 
     const url = this.baseUrl + "?agregarUsuario=";
 
     return this.http.post<Usuario>(url, datoUsuario)
+      .pipe(
+        tap(resp => { console.log(resp);
+        }),
+        map(resp => resp),
+        catchError(err => of(err.error.mensaje))
+      )
   }
 
 
