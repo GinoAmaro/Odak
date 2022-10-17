@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
+import { Subject } from 'rxjs';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-registro-empresa',
@@ -9,17 +11,22 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 })
 export class RegistroEmpresaComponent implements OnInit {
 
-  formularioRegistro:FormGroup=this.fb.group({
-    
+  categorias: any[] = []
+
+  formularioRegistro: FormGroup = this.fb.group({
+    categoria: ['']
   })
 
-  constructor(private fb:FormBuilder) { }
+  debouncer: Subject<string> = new Subject();
+
+  constructor(private fb: FormBuilder, private service: AuthService) { }
 
   ngOnInit(): void {
   }
 
-  registrar(){
-
+  registrar() {
   }
+
+
 
 }

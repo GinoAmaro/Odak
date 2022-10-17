@@ -12,8 +12,8 @@ const routes: Routes = [
   {
     path: 'home',
     loadChildren: () => import('./home/home.module').then(m => m.HomeModule),
-    canLoad: [AuthGuard],
-    canActivate: [AuthGuard]
+    // canLoad: [AuthGuard],
+    // canActivate: [AuthGuard]
   },
   {
     path: 'tarjeta',
@@ -25,7 +25,7 @@ const routes: Routes = [
   },
   {
     path: '**',
-    redirectTo: 'auth/admin'
+    redirectTo: 'home/empresa/registrar-empresa'
   }
 ]
 

@@ -4,6 +4,39 @@
 
 /*La anterior fuente se llamaba Inter*/
 
+.margen{
+    margin: 25px;
+}
+
+.textarea{
+    resize: none;
+}
+
+.sugerencia-caja{
+    position: relative;
+      left: 37px;
+      width: 300px;
+      background-color: #C1C1C6;
+      border-radius: 7px;
+      -webkit-border-radius: 7px;
+      border: 2px solid #FFFFFF;	
+      color: #fff;
+  }
+.sugerencia-lista {
+      margin: 0px;
+      padding: 0px;
+  }
+  
+  .sugerencia-lista li {
+      
+      margin: 0px 0px 3px 0px;
+      padding: 3px;
+      cursor: pointer;
+  }
+  
+  .sugerencia-lista li:hover {
+      background-color: #056563;
+  }
 
 
 /*Login*/

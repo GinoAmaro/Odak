@@ -3,17 +3,18 @@ import { CommonModule } from '@angular/common';
 
 import { HomeRoutingModule } from './home-routing.module';
 import { AdminModule } from './admin/admin.module';
+import { EmpresaModule } from './empresa/empresa.module';
 
 
 
 
 @NgModule({
-  declarations: [
-  ],
+  declarations: [],
   imports: [
     CommonModule,
     HomeRoutingModule,
-    AdminModule
+    AdminModule,
+    EmpresaModule
   ],
   exports: []
 })
