@@ -50,7 +50,7 @@ export class RegistroComponent implements OnInit {
             cancelButtonText: 'Despues',
           }).then((result) => {
             if (result.isConfirmed) {
-              this.router.navigateByUrl('auth/registro-empresa');
+              this.router.navigateByUrl('home/empresa/registrar-empresa');
             } else if (result.isDismissed) {
               this.router.navigateByUrl('home/empresa');
             }
