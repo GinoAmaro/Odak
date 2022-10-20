@@ -25,9 +25,9 @@ export class AgregarPlanComponent implements OnInit {
   titulo: string = 'Agregar';
 
   constructor(private activeRoute: ActivatedRoute,
+    private router: Router,
     private fb: FormBuilder,
-    private crudService: CrudPlanService,
-    private router: Router
+    private crudService: CrudPlanService
   ) { }
 
   ngOnInit(): void {

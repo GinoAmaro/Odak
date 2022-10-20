@@ -24,6 +24,11 @@ export class EmpresaService {
     return this.http.post<Empresa>(url, datosEmpresa)
   }
 
+  consultarEmpresa(id: number): Observable<Empresa[]> {
+    const url = this.baseUrl + "?consultarEmpresa=";
+    return this.http.get<Empresa[]>(url + id);
+  }
+
 
 
 }

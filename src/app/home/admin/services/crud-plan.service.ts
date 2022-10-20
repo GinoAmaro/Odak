@@ -34,5 +34,4 @@ export class CrudPlanService {
     return this.clienteHttp.post<Plan>(this.url + "?actualizarPlan=" + id, datoPlan);
   }
 
-
 }

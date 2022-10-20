@@ -9,7 +9,13 @@ import { Categoria } from '../../interfaces/empresa';
 @Component({
   selector: 'app-registrar-empresa',
   templateUrl: './registrar-empresa.component.html',
-  styles: []
+  styles: [
+    `
+    ul{
+      cursor:pointer
+    }
+    `
+  ]
 })
 export class RegistrarEmpresaComponent implements OnInit {
 
@@ -85,7 +91,7 @@ export class RegistrarEmpresaComponent implements OnInit {
   guardarRegistro() {
     this.formularioEmpresa.value.imagen_logo = this.previsualizacionLogo;
     this.formularioEmpresa.value.imagen_fondo = this.previsualizacionFondo;
-    console.log(this.formularioEmpresa.value);
+    console.log(this.formularioEmpresa.value.imagen_fondo);
     this.eService.registrarEmpresa(this.formularioEmpresa.value).subscribe(resp => console.log(resp))
 
   }

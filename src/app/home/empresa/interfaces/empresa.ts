@@ -18,4 +18,6 @@ export interface Empresa {
     instagram: string;
     linkedin: string;
     prueba: string;
+    imagen_logo: string,
+    imagen_fondo: string,
 }
