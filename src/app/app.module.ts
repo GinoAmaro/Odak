@@ -5,14 +5,12 @@ import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { ErrorPageComponent } from './shared/error-page/error-page.component';
 import { HttpClientModule } from '@angular/common/http';
-import { TarjetaEmpresaComponent } from './tarjeta/pages/tarjeta-empresa/tarjeta-empresa.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    ErrorPageComponent,
-    TarjetaEmpresaComponent,
+    ErrorPageComponent
   ],
   imports: [
     BrowserModule,

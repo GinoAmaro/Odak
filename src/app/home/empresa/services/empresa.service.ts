@@ -1,8 +1,10 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { map, catchError } from 'rxjs/operators';
+import { Observable, tap, of } from 'rxjs';
+
 import { environment } from 'src/environments/environment';
-import { Categoria, Empresa } from '../interfaces/empresa';
-import { Observable } from 'rxjs';
+import { Categoria, Empresa, Cotizacion } from '../interfaces/empresa';
 
 @Injectable({
   providedIn: 'root'
@@ -29,6 +31,16 @@ export class EmpresaService {
     return this.http.get<Empresa[]>(url + id);
   }
 
+  cotizarEmpresa(datoCotizar: Cotizacion) {
+    const url = this.baseUrl + "?cotizarEmpresa=";
+    return this.http.post<Cotizacion>(url, datoCotizar)
+      .pipe(
+        tap(resp => {
+        }),
+        map(resp => resp),
+        catchError(err => of(err.error.mensaje))
+      )
+  }
 
 
 }
