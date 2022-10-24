@@ -1,0 +1,118 @@
+@charset "UTF-8";
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap');
+
+:root {
+    --bs-font-sans-serif: "Poppins", sans-serif;
+}
+
+a:link {
+    text-decoration: none;
+}
+
+.links a {
+    color: #354f52;
+}
+
+.links a:hover {
+    color: #84a98c;
+}
+
+#size-card-width {
+    width: 90vh;
+}
+
+@media only screen and (max-width: 600px) {
+    body {
+        height: 150vh;
+    }
+
+    #size-card-width {
+        width: 80vw;
+    }
+}
+
+.card {
+    --bs-card-border-width: 0 !important;
+}
+
+body {
+    height: 100vh;
+    background-repeat: round;
+    background-size: 100%;
+    background-image: linear-gradient(120deg, #fff 0%, #fff 200%);
+}
+
+.portada {
+    margin-bottom: -10% !important;
+}
+
+.portada2 {
+    height: 40vh;
+    width: 100vh;
+    border-radius: 25px;
+    margin-top: -1%;
+}
+
+.logo {
+    height: 15vh;
+    width: 15vh;
+    padding: 10px;
+    border: 5px solid;
+    border-color: #354f52;
+    margin-top: -15%;
+}
+
+.background-card {
+    background-image: #f5f7fa;
+}
+
+button:hover {
+    transform: scale(1.09);
+    animation-duration: 8s;
+}
+
+.btn-gray-800 {
+    color: #ffffff;
+    background-color: #1F2937;
+    border-color: #1F2937;
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.15), 0 1px 1px rgba(17, 24, 39, 0.075);
+}
+
+.btn-gray-800:hover {
+    color: #ffffff;
+    background-color: #1a232f;
+    border-color: #19212c;
+}
+
+.btn-check:focus+.btn-gray-800,
+.btn-gray-800:focus {
+    color: #ffffff;
+    background-color: #1a232f;
+    border-color: #19212c;
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.15), 0 1px 1px rgba(17, 24, 39, 0.075), 0 0 0 0.18rem rgba(65, 73, 85, 0.5);
+}
+
+.btn-check:checked+.btn-gray-800,
+.btn-check:active+.btn-gray-800,
+.btn-gray-800:active,
+.btn-gray-800.active,
+.show>.btn-gray-800.dropdown-toggle {
+    color: #ffffff;
+    background-color: #19212c;
+    border-color: #171f29;
+}
+
+.btn-check:checked+.btn-gray-800:focus,
+.btn-check:active+.btn-gray-800:focus,
+.btn-gray-800:active:focus,
+.btn-gray-800.active:focus,
+.show>.btn-gray-800.dropdown-toggle:focus {
+    box-shadow: inset 0 3px 5px rgba(17, 24, 39, 0.125), 0 0 0 0.18rem rgba(65, 73, 85, 0.5);
+}
+
+.btn-gray-800:disabled,
+.btn-gray-800.disabled {
+    color: #ffffff;
+    background-color: #1F2937;
+    border-color: #1F2937;
+}
