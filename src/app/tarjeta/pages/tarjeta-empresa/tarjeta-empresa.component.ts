@@ -59,18 +59,26 @@ export class TarjetaEmpresaComponent implements OnInit {
         )
       )
       .subscribe(empresa => {
+        console.log(empresa);
+
+        console.log(this.datoEmpresa);
         this.datoEmpresa = empresa[0];
+        console.log(this.datoEmpresa);
         this.mailto = this.mailto + empresa[0].correo;
-        this.idEmpresa = empresa[0].id
+        this.idEmpresa = empresa[0].id;
+
+        if (!this.datoEmpresa.imagen_logo) {
+          this.datoEmpresa.imagen_logo = '../../../assets/img/favicon/apple-touch-icon.png'
+        }
+
+        if (!this.datoEmpresa.imagen_fondo) {
+          this.datoEmpresa.imagen_fondo = '../../../assets/img/tarjeta/fondo.jpg'
+        }
       });
 
   }
 
   cotizar() {
-
-    if (!this.datoEmpresa.imagen_logo) {
-      this.datoEmpresa.imagen_logo = '../../../assets/img/favicon/apple-touch-icon.png'
-    }
 
     Swal.fire({
       title: 'Enviamos la cotización?',

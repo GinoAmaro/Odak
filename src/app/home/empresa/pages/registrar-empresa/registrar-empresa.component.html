@@ -62,7 +62,7 @@
                                     <input type="text" class="form-control" placeholder="Categoría de la Empresa"
                                         formControlName="prueba" (input)="teclaPresionada($event)">
                                         
-                                        <select *ngIf="verBarra" class="form-select" formControlName="categoria">
+                                        <select *ngIf="verBarra" class="form-select" formControlName="categoria" required>
                                             <option value="{{categoria.id}}" id="categoria"
                                             *ngFor="let categoria of categorias">{{categoria.descripcion}}</option>
                                         </select>
@@ -84,7 +84,7 @@
                                         </svg>
                                     </span>
                                     <input type="text" class="form-control" placeholder="Escriba la Comuna"
-                                        formControlName="comuna">
+                                        formControlName="comuna" required>
                                 </div>
                             </div>
                             <div class="form-group col-8 mb-4">

@@ -92,4 +92,5 @@ export class AuthService {
   logOut() {
     localStorage.clear();
   }
+  
 }

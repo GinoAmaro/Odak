@@ -16,7 +16,7 @@ const routes: Routes = [
     // canActivate: [AuthGuard]
   },
   {
-    path: 'tarjeta',
+    path: '',
     loadChildren: () => import('./tarjeta/tarjeta-empresa.module').then(m => m.TarjetaEmpresaModule)
   },
   {
@@ -25,7 +25,7 @@ const routes: Routes = [
   },
   {
     path: '**',
-    redirectTo: 'tarjeta/'
+    redirectTo: ''
   }
 ]
 
