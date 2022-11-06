@@ -13,7 +13,8 @@
                     <h1 class="fw-bolder">Usted está en Odak</h1>
                     <h5 class="fw-normal text-muted mb-5">Emprender con estilo #odak</h5>
 
-                    <a routerLink="auth/registro" class="btn btn-outline-white d-inline-flex align-items-center me-md-5">
+                    <a routerLink="auth/registro"
+                        class="btn btn-outline-white d-inline-flex align-items-center me-md-5">
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                             class="bi bi-person-circle" viewBox="0 0 16 16">
                             <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z" />
@@ -33,7 +34,8 @@
                     </a>
 
                     <div class="ml-md-5 pt-4"><a href="#" target="_blank" class="d-flex justify-content-center"><img
-                                src="../../../../assets/img/index/TouchBlanco.svg" width="135" class=d-block my-1></a></div>
+                                src="../../../../assets/img/index/TouchBlanco.svg" width="135" class=d-block my-1></a>
+                    </div>
                 </div>
             </div>
         </div>
@@ -136,47 +138,21 @@
                     <p class="lead px-lg-8">Nuestros últimos clientes</p>
                 </div>
             </div>
-            <div class="row">
-                <div class="col-12 col-sm-6 col-lg-3">
+            <div class="row prueba" *ngIf="empresa">
+                <div class="col-12 col-sm-6 col-lg-3" *ngFor="let item of empresa; let idEmpresa=index">
                     <div class="card bg-white shadow-soft text-primary rounded mb-4">
-                        <div class="px-3 px-lg-4 py-5 text-center">
-                            <img src="./assets/img/index/partners/RR.png" width="120"><br /><br />
-                            <h5 class="fw-bold text-primary">Rusticos Rancagua</h5>
-                        </div>
+                        <a [href]="'/'+empresa[idEmpresa].id" target="_blank">
+                            <div class="px-3 px-lg-4 py-5 text-center">
+                                <img [src]="empresa[idEmpresa].imagen_logo" class="logo-landing">
+                                <br/>
+                                <br/>
+                                <h5 class="fw-bold text-primary">{{empresa[idEmpresa].nombre_fantasia}}</h5>
+                            </div>
+                        </a>
                     </div>
                 </div>
-
-
-                <div class="col-12 col-sm-6 col-lg-3">
-                    <div class="card bg-white shadow-soft text-primary rounded mb-4">
-                        <div class="px-3 px-lg-4 py-5 text-center">
-                            <img src="./assets/img/index/partners/touch.png" width="120"><br /><br />
-                            <h5 class="fw-bold text-primary">Touch</h5>
-                        </div>
-                    </div>
-                </div>
-
-
-                <div class="col-12 col-sm-6 col-lg-3">
-                    <div class="card bg-white shadow-soft text-primary rounded mb-4">
-                        <div class="px-3 px-lg-4 py-5 text-center">
-                            <img src="./assets/img/index/partners/ideasut.png" width="120"><br /><br />
-                            <h5 class="fw-bold text-primary">ideaSUT</h5>
-                        </div>
-                    </div>
-                </div>
-
-
-                <div class="col-12 col-sm-6 col-lg-3">
-                    <div class="card bg-white shadow-soft text-primary rounded mb-4">
-                        <div class="px-3 px-lg-4 py-5 text-center">
-                            <img src="./assets/img/index/partners/odak.png" width="100"><br /><br />
-                            <h5 class="fw-bold text-primary">Odak</h5>
-                        </div>
-                    </div>
-                </div>
-
             </div>
+
         </div>
     </section>
 

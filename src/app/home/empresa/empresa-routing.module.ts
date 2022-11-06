@@ -16,6 +16,10 @@ const routes: Routes = [
         component: RegistrarEmpresaComponent
       },
       {
+        path: 'editar-empresa/:id',
+        component: RegistrarEmpresaComponent
+      },
+      {
         path: '**',
         redirectTo: ''
       }

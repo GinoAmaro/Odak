@@ -22,6 +22,7 @@ export interface Empresa {
     prueba: string;
     imagen_logo: string,
     imagen_fondo: string,
+    mensaje?: string
 }
 
 export interface Cotizacion{

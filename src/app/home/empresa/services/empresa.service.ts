@@ -26,8 +26,17 @@ export class EmpresaService {
     return this.http.post<Empresa>(url, datosEmpresa)
   }
 
+  actualizarEmpresa(datosEmpresa: Empresa): Observable<Empresa> {
+    const url = this.baseUrl + "?actualizarEmpresa=";
+    return this.http.post<Empresa>(url, datosEmpresa)
+  }
+
   consultarEmpresa(id: number): Observable<Empresa[]> {
     const url = this.baseUrl + "?consultarEmpresa=";
+    return this.http.get<Empresa[]>(url + id);
+  }
+  consultarParaEditar(id: number): Observable<Empresa[]> {
+    const url = this.baseUrl + "?consultarParaEditar=";
     return this.http.get<Empresa[]>(url + id);
   }
 
@@ -40,6 +49,11 @@ export class EmpresaService {
         map(resp => resp),
         catchError(err => of(err.error.mensaje))
       )
+  }
+
+  landingEmpresa(): Observable<Empresa[]> {
+    const url = this.baseUrl + "?landingEmpresa=";
+    return this.http.get<Empresa[]>(url);
   }
 
 

@@ -8,8 +8,7 @@ import { CrudPlanService } from '../../services/crud-plan.service';
 @Component({
   selector: 'app-agregar-usuario',
   templateUrl: './agregar-plan.component.html',
-  styles: [
-  ]
+  styles: []
 })
 export class AgregarPlanComponent implements OnInit {
 
