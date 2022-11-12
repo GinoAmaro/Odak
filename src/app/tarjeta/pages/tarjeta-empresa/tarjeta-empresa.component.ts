@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { EmpresaService } from '../../../home/empresa/services/empresa.service';
 import { Empresa } from '../../../home/empresa/interfaces/empresa';
 import { switchMap } from 'rxjs/operators';
@@ -45,12 +45,13 @@ export class TarjetaEmpresaComponent implements OnInit {
     telefono_cliente: ['972003262'],
     solicitud_cliente: ['Compra de Cereza 10 kilos']
   })
-  router: any;
 
+  prueba: any;
 
-  constructor(private eService: EmpresaService, private activeRoute: ActivatedRoute, private fb: FormBuilder) { }
+  constructor(private eService: EmpresaService, private activeRoute: ActivatedRoute, private fb: FormBuilder, private router: Router) { }
 
   ngOnInit(): void {
+
 
     this.activeRoute.params
       .pipe(
@@ -59,11 +60,15 @@ export class TarjetaEmpresaComponent implements OnInit {
         )
       )
       .subscribe(empresa => {
-        console.log(empresa);
 
-        console.log(this.datoEmpresa);
+        this.prueba = empresa
+        if (this.prueba.mensaje) {
+          this.router.navigate(['404']);
+          return
+        }
+
+
         this.datoEmpresa = empresa[0];
-        console.log(this.datoEmpresa);
         this.mailto = this.mailto + empresa[0].correo;
         this.idEmpresa = empresa[0].id;
 

@@ -6,6 +6,10 @@ import { AuthGuard } from './auth/guards/auth.guard';
 
 const routes: Routes = [
   {
+    path: '404',
+    component: ErrorPageComponent
+  },
+  {
     path: 'auth',
     loadChildren: () => import('./auth/auth.module').then(m => m.AuthModule)
   },
@@ -16,16 +20,12 @@ const routes: Routes = [
     // canActivate: [AuthGuard]
   },
   {
-    path: '',
+    path: 'odak',
     loadChildren: () => import('./tarjeta/tarjeta-empresa.module').then(m => m.TarjetaEmpresaModule)
   },
   {
-    path: '404',
-    component: ErrorPageComponent
-  },
-  {
     path: '**',
-    redirectTo: ''
+    redirectTo: 'odak/pyme'
   }
 ]
 

@@ -1,0 +1,46 @@
+<main>
+    <div class="fondo-grilla">
+        <section class="section-header overflow-hidden pt-7 pt-lg-8 pb-9 pb-lg-12 bg-primary text-white">
+            <div class="container">
+                <div class="row">
+                    <form (ngSubmit)="buscando()">
+                        <div class="input-group">
+                            <span class="input-group-text" id="topbar-addon">
+                                <svg class="icon icon-xs" x-description="Heroicon name: solid/search"
+                                    xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"
+                                    aria-hidden="true">
+                                    <path fill-rule="evenodd"
+                                        d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z"
+                                        clip-rule="evenodd"></path>
+                                </svg>
+                            </span>
+                            <input type="text" autocomplete="off" class="form-control" name="consulta" [(ngModel)]="consulta" placeholder="Buscar"
+                                aria-label="Search" aria-describedby="topbar-addon">
+                        </div>
+                    </form>
+                </div>
+                <br><br>
+                <div class="col-12 mensaje" *ngIf="mensaje">
+                    <img src="../../../../assets/img/tarjeta/triste-lagrima.svg" width="75">
+                    <br><br>
+                    <h3>Lo siento, {{mensaje}}</h3>
+                </div>
+                <div class="row" *ngIf="empresa">
+                    <div class="col-12 col-sm-6 col-lg-3" *ngFor="let item of empresa; let idEmpresa=index">
+                        <div class="card bg-white shadow-soft text-primary rounded mb-4">
+                            <a [href]="'/odak/'+empresa[idEmpresa].id" target="_blank">
+                                <div class="px-3 px-lg-4 py-5 text-center">
+                                    <img [src]="empresa[idEmpresa].imagen_logo" class="logo-landing">
+                                    <br/>
+                                    <br/>
+                                    <h5 class="fw-bold text-primary">{{empresa[idEmpresa].nombre_fantasia}}</h5>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </section>
+    </div>
+</main>

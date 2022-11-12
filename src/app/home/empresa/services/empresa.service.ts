@@ -4,7 +4,7 @@ import { map, catchError } from 'rxjs/operators';
 import { Observable, tap, of } from 'rxjs';
 
 import { environment } from 'src/environments/environment';
-import { Categoria, Empresa, Cotizacion } from '../interfaces/empresa';
+import { Categoria, Empresa, Cotizacion, Grilla } from '../interfaces/empresa';
 
 @Injectable({
   providedIn: 'root'
@@ -54,6 +54,15 @@ export class EmpresaService {
   landingEmpresa(): Observable<Empresa[]> {
     const url = this.baseUrl + "?landingEmpresa=";
     return this.http.get<Empresa[]>(url);
+  }
+
+  grillaEmpresa(consulta: string) {
+    const url = this.baseUrl + "?grillaEmpresa=";
+    return this.http.get<Empresa[]>(url + consulta)
+      .pipe(
+        map(resp => resp),
+        catchError(err => of(err.error.mensaje))
+      )
   }
 
 

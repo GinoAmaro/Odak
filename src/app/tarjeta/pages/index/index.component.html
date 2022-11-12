@@ -141,11 +141,11 @@
             <div class="row prueba" *ngIf="empresa">
                 <div class="col-12 col-sm-6 col-lg-3" *ngFor="let item of empresa; let idEmpresa=index">
                     <div class="card bg-white shadow-soft text-primary rounded mb-4">
-                        <a [href]="'/'+empresa[idEmpresa].id" target="_blank">
+                        <a [href]="'/odak/'+empresa[idEmpresa].id" target="_blank">
                             <div class="px-3 px-lg-4 py-5 text-center">
                                 <img [src]="empresa[idEmpresa].imagen_logo" class="logo-landing">
-                                <br/>
-                                <br/>
+                                <br />
+                                <br />
                                 <h5 class="fw-bold text-primary">{{empresa[idEmpresa].nombre_fantasia}}</h5>
                             </div>
                         </a>
