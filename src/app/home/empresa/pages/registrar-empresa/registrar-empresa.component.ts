@@ -4,7 +4,7 @@ import { DomSanitizer } from '@angular/platform-browser';
 import { debounceTime, Subject } from 'rxjs';
 
 import { EmpresaService } from '../../services/empresa.service';
-import { Categoria } from '../../interfaces/empresa';
+import { Categoria, Referencia } from '../../interfaces/empresa';
 import { Router, ActivatedRoute } from '@angular/router';
 import { switchMap } from 'rxjs/operators';
 
@@ -32,32 +32,43 @@ export class RegistrarEmpresaComponent implements OnInit {
   public previsualizacionFondo: string = '';
 
   categorias: Categoria[] = [];
+  referencias: Referencia[] = [];
   termino: string = '';
   verBarra: boolean = false;
   hayError: boolean = false;
+  mostrarReferencias: boolean = true;
+
+  referencia: string = '';
+  empresaReferencia: string = '1';
+
+
+
 
   debouncer: Subject<string> = new Subject();
 
   formularioEmpresa: FormGroup = this.fb.group({
     id: [''],
-    rut: ['1-6'],
-    nombre_fantasia: ['Krosty'],
-    prueba: ['b'],
-    comuna: ['1'],
-    direccion: ['la vendimia 2344'],
-    telefono: ['895465455'],
-    titulo_descripcion: ['Quienes Somos'],
-    correo: ['emzero1@gmail.com'],
-    linkedin: ['https://www.linkedin.com'],
-    twitter: ['https://www.twitter.com'],
-    facebook: ['https://www.facebook.com'],
-    instagram: ['https://www.instagram.com'],
-    whatsapp: ['+56988877766'],
+    rut: [''],
+    nombre_fantasia: [''],
+    prueba: [''],
+    comuna: [''],
+    direccion: [''],
+    telefono: [''],
+    titulo_descripcion: [''],
+    correo: [''],
+    linkedin: [''],
+    twitter: [''],
+    facebook: [''],
+    instagram: [''],
+    whatsapp: [''],
     categoria: [''],
-    descripcion: ['esto es una prueba'],
+    descripcion: [''],
     imagen_logo: [''],
     imagen_fondo: [''],
+    referencia: ['']
   })
+
+
 
   constructor(private eService: EmpresaService,
     private fb: FormBuilder,
@@ -73,12 +84,14 @@ export class RegistrarEmpresaComponent implements OnInit {
       })
 
     if (!this.router.url.includes('editar')) {
+      this.mostrarReferencias = false;
       return
     }
 
     this.activeRoute.params
       .pipe(switchMap(({ id }) => this.eService.consultarParaEditar(id)))
       .subscribe(empresa => {
+
         this.formularioEmpresa.setValue({
           id: empresa[0]['id'],
           rut: empresa[0]['rut'],
@@ -98,9 +111,21 @@ export class RegistrarEmpresaComponent implements OnInit {
           descripcion: empresa[0]['descripcion'],
           imagen_logo: empresa[0]['imagen_logo'],
           imagen_fondo: empresa[0]['imagen_fondo'],
+          referencia: ['']
         })
         this.previsualizacionLogo = empresa[0]['imagen_logo'];
         this.previsualizacionFondo = empresa[0]['imagen_fondo']
+      })
+
+    this.activeRoute.params
+      .pipe(switchMap(({ id }) => this.eService.buscarReferencia(id)))
+      .subscribe(respuesta => {
+
+        if (respuesta.mensaje) {
+          console.log(respuesta.mensaje);
+          return
+        }
+        this.referencias = respuesta;
       })
 
   }
@@ -148,7 +173,6 @@ export class RegistrarEmpresaComponent implements OnInit {
       cancelButtonText: 'Cancelar',
     }).then((result) => {
       if (result.isConfirmed) {
-        // this.router.navigateByUrl('home/empresa');
         this.eService.registrarEmpresa(this.formularioEmpresa.value).subscribe(resp => {
           Swal.fire({
             title: resp.mensaje,
@@ -236,6 +260,32 @@ export class RegistrarEmpresaComponent implements OnInit {
       this.actualizarRegistro();
     }
     return;
+  }
+
+  agregarReferencia() {
+
+    if (this.formularioEmpresa.value.referencia == '') {
+
+      return
+    }
+
+    const descripcion = this.formularioEmpresa.value.referencia;
+    const empresa = this.formularioEmpresa.value.id;
+    const id = 1;
+
+    this.eService.agregarReferencia({ id, empresa, descripcion })
+      .subscribe(resp => {
+        console.log(resp);
+      })
+
+  }
+
+  borrarReferencia(id: number, idControl: number) {
+    this.eService.borrarReferencia(id).subscribe(
+      resp => {
+        this.referencias.splice(idControl, 1);
+      }
+    );
   }
 
 }

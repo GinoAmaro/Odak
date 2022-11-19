@@ -25,7 +25,8 @@ const routes: Routes = [
   },
   {
     path: '**',
-    redirectTo: 'odak/pyme'
+    redirectTo: 'odak'
+    // redirectTo: 'home/empresa/registrar-empresa'
   }
 ]
 

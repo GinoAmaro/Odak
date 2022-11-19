@@ -33,8 +33,8 @@ export interface Cotizacion{
     solicitud_cliente:string;
 }
 
-export interface Grilla {
-    id:string;
-    nombre_fantasia: string;
-    imagen_logo: string,
+export interface Referencia {
+    id:number;
+    empresa:string;
+    descripcion:string;
 }

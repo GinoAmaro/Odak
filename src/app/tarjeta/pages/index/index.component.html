@@ -13,7 +13,7 @@
                     <h1 class="fw-bolder">Usted está en Odak</h1>
                     <h5 class="fw-normal text-muted mb-5">Emprender con estilo #odak</h5>
 
-                    <a routerLink="auth/registro"
+                    <a routerLink="../auth/registro"
                         class="btn btn-outline-white d-inline-flex align-items-center me-md-5">
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                             class="bi bi-person-circle" viewBox="0 0 16 16">
@@ -23,7 +23,8 @@
                         </svg> &nbsp; Registrar
                     </a>
 
-                    <a routerLink="auth/login" class="btn btn-outline-white d-inline-flex align-items-center me-md-1">
+                    <a routerLink="../auth/login"
+                        class="btn btn-outline-white d-inline-flex align-items-center me-md-1">
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                             class="bi bi-box-arrow-in-right" viewBox="0 0 16 16">
                             <path fill-rule="evenodd"
@@ -151,6 +152,13 @@
                         </a>
                     </div>
                 </div>
+            </div>
+            <div class="col-12 text-center">
+                <h2 class="h1 px-lg-5">¿Quieres ver mas?</h2>
+                <br>
+                <a [href]="'odak/pyme'" target="_blank">
+                    <button  type="submit" class="btn btn-gray-800" >Click Aqui!</button>
+                </a>
             </div>
 
         </div>

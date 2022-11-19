@@ -27,11 +27,17 @@
     margin: 15px;
 }
 
+
 .logo-landing {
     width: 120px;
     height: 120px;
     margin: 15px;
     border-radius: 5px;
+}
+
+.boton-home{
+    min-height: 3.123rem;
+    margin: 2rem;
 }
 
 .margen {
@@ -85,9 +91,7 @@
 
 .hm-form-control,
 .btn {
-    min-height: 3.123rem;
     line-height: initial;
-    margin: 2rem;
 }
 
 .hm-bgcolor {

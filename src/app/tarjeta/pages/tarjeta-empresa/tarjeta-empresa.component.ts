@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { EmpresaService } from '../../../home/empresa/services/empresa.service';
-import { Empresa } from '../../../home/empresa/interfaces/empresa';
+import { Empresa, Referencia } from '../../../home/empresa/interfaces/empresa';
 import { switchMap } from 'rxjs/operators';
 import { FormBuilder, FormGroup } from '@angular/forms';
 
@@ -16,6 +16,9 @@ export class TarjetaEmpresaComponent implements OnInit {
 
   mailto: string = 'mailto:';
   idEmpresa!: string;
+  mostrarReferencias: boolean = true;
+
+  referencias: Referencia[] = [];
 
   datoEmpresa: Empresa = {
     id: '',
@@ -80,6 +83,17 @@ export class TarjetaEmpresaComponent implements OnInit {
           this.datoEmpresa.imagen_fondo = '../../../assets/img/tarjeta/fondo.jpg'
         }
       });
+
+    this.activeRoute.params
+      .pipe(switchMap(({ id }) => this.eService.buscarReferencia(id)))
+      .subscribe(respuesta => {
+        if (respuesta.mensaje) {
+          this.mostrarReferencias = false;
+          console.log(respuesta.mensaje);
+          return
+        }
+        this.referencias = respuesta;
+      })
 
   }
 

@@ -4,7 +4,7 @@ import { map, catchError } from 'rxjs/operators';
 import { Observable, tap, of } from 'rxjs';
 
 import { environment } from 'src/environments/environment';
-import { Categoria, Empresa, Cotizacion, Grilla } from '../interfaces/empresa';
+import { Categoria, Empresa, Cotizacion, Referencia } from '../interfaces/empresa';
 
 @Injectable({
   providedIn: 'root'
@@ -65,6 +65,28 @@ export class EmpresaService {
       )
   }
 
+  agregarReferencia(datoreferencia: Referencia) {
+    const url = this.baseUrl + "?agregarReferencia=";
+    return this.http.post<Referencia>(url, datoreferencia)
+  }
+
+  buscarReferencia(consulta: string){
+    const url = this.baseUrl + "?buscarReferencia=";
+    return this.http.get<Referencia[]>(url + consulta)
+      .pipe(
+        map(resp => resp),
+        catchError(err => of(err.error.mensaje))
+      )
+  }
+
+  borrarReferencia(id: number): Observable<Referencia> {
+    const url = this.baseUrl + "?borrarReferencia=";
+    return this.http.get<Referencia>(url + id)
+    .pipe(
+      map(resp => resp),
+      catchError(err => of(err.error.mensaje))
+    )
+  }
 
 }
 

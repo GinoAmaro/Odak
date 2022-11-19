@@ -116,15 +116,11 @@
                 </div>
 
                 <br>
-                <!-- <div class="Servicios">
+                <div class="Servicios" *ngIf="mostrarReferencias">
                     <h5>SERVICIOS</h5>
-                    <span class="badge badge-sm bg-secondary ms-1 text-gray-800">[Desarrollo web]</span>&nbsp;
-                    <span class="badge badge-sm bg-secondary ms-1 text-gray-800">[Asesorías y
-                        Capacitaciones]</span>&nbsp;
-                    <span class="badge badge-sm bg-secondary ms-1 text-gray-800">[Diseño Gráfico]</span>&nbsp;
-                    <span class="badge badge-sm bg-secondary ms-1 text-gray-800">[SEO/SEM]</span>&nbsp;
-                    <span class="badge badge-sm bg-secondary ms-1 text-gray-800">[Marketing Digital]</span>&nbsp;
-                </div> -->
+                    <span class="badge badge-sm bg-secondary ms-1 text-gray-800" *ngFor="let referencia of referencias">{{referencia.descripcion}}</span>&nbsp;
+                    
+                </div>
                 <br>
 
                 <div class="descripcion">
