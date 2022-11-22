@@ -17,7 +17,7 @@
       <!-- Form -->
       <form class="mt-2" [formGroup]="formularioLogin" autocomplete="off">
 
-        <div class="form-group mb-3">
+        <div class="form-group mb-3" *ngIf="!confirmacion">
           <label for="email">Email</label>
           <div class="input-group">
             <span class="input-group-text" id="basic-addon1">
@@ -33,7 +33,7 @@
         </div>
 
         <div class="form-group">
-          <div class="form-group mb-4">
+          <div class="form-group mb-4" *ngIf="!confirmacion">
             <label for="password">Contraseña</label>
             <div class="input-group">
               <span class="input-group-text" id="basic-addon2">
@@ -49,21 +49,32 @@
             </div>
           </div>
 
-          <!-- End of Form -->
-          <div class="d-flex justify-content-between align-items-top mb-4">
-            <div class="form-check">
-              <input class="form-check-input" type="checkbox" value="" id="remember">
-              <label class="form-check-label mb-0" for="remember">
-                Recordarme
-              </label>
+          <div class="form-group mb-4" *ngIf="confirmacion">
+            <label for="password">Codigo Validación</label>
+            <div class="input-group">
+              <span class="input-group-text" id="basic-addon2">
+                <svg class="icon icon-xs text-gray-600" fill="currentColor" viewBox="0 0 20 20"
+                  xmlns="http://www.w3.org/2000/svg">
+                  <path fill-rule="evenodd"
+                    d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z"
+                    clip-rule="evenodd"></path>
+                </svg>
+              </span>
+              <input type="text" placeholder="Codigo" class="form-control" formControlName="confirmar"
+                required>
             </div>
+          </div>
+
+          <!-- End of Form -->
+          <div class="d-flex justify-content-between align-items-top mb-4" *ngIf="!confirmacion">
             <div><a href="./recordar_pass.html" class="small text-right">¿Olvidaste tu contraseña?</a></div>
           </div>
         </div>
         <div class="d-grid">
-          <button type="submit" class="btn btn-gray-800" (click)="login()">Iniciar Sesión</button>
+          <button type="submit" class="btn btn-gray-800" (click)="ingresar()">{{btnLogin}}</button>
         </div>
-        <div class="justify-content-center align-items-center">
+        <br>
+        <div class="justify-content-center align-items-center" *ngIf="!confirmacion">
           <span>
             ¿No posee una cuenta en Odak?
             <a routerLink="../registro" class="fw-bold">Cree una cuenta ahora!</a>
