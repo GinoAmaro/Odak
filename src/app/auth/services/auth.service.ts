@@ -38,8 +38,8 @@ export class AuthService {
               apellidos: resp[0].apellidos,
               correo: resp[0].correo,
               token: resp[0].token
-            },
-              localStorage.setItem('token', resp[0].token)
+            }
+              , localStorage.setItem('token', resp[0].token)
           }
         }
         ),
@@ -65,8 +65,7 @@ export class AuthService {
               apellidos: resp[0].apellidos,
               correo: resp[0].correo,
               token: resp[0].token
-            },
-              localStorage.setItem('token', resp[0].token)
+            }
           }
         }
         ),
@@ -92,5 +91,27 @@ export class AuthService {
   logOut() {
     localStorage.clear();
   }
-  
+
+  validarToken(token: string) {
+    const url = this.baseUrl + "?validarToken=";
+    return this.http.get<Usuario[]>(url + token)
+      .pipe(
+        tap(resp => {
+          if (resp[0]) {
+            this._auth = {
+              id: resp[0].id,
+              nombre: resp[0].nombre,
+              apellidos: resp[0].apellidos,
+              correo: resp[0].correo,
+              token: resp[0].token
+            }
+          }
+        }
+        ),
+        map(resp => resp),
+        catchError(err => of(err.error.mensaje))
+      )
+  }
+
+
 }

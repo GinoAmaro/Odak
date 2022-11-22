@@ -13,13 +13,25 @@ import Swal from 'sweetalert2'
 })
 export class LoginComponent {
 
+  confirmacion: boolean = false;
+  btnLogin: string = 'Iniciar Sesión';
+
   formularioLogin: FormGroup = this.fb.group({
     correo: ['emzero1@gmail.com'],
-    contrasena: ['123']
+    contrasena: ['123'],
+    confirmar: ['']
   })
 
   constructor(private fb: FormBuilder, private router: Router, private authservice: AuthService) {
 
+  }
+
+  ingresar() {
+    if (this.btnLogin == 'Iniciar Sesión') {
+      this.login();
+    } else if (this.btnLogin == 'Validar') {
+      this.validar();
+    }
   }
 
   login() {
@@ -30,13 +42,16 @@ export class LoginComponent {
       .subscribe(resp => {
         if (!resp.mensaje) {
           Swal.fire({
-            title: 'Bienvenido',
-            text: resp[0].nombre + ' ' + resp[0].apellidos,
-            icon: 'success',
-            timer: 1500,
+            title: 'Revisa tu correo',
+            text: 'Te hemos enviado tu código de acceso',
+            imageUrl: '../../../assets/img/login/comentario-info.svg',
+            imageHeight: '100',
+            timer: 4500,
             showConfirmButton: false
           })
-          this.router.navigateByUrl('/home/empresa');
+          this.confirmacion = true;
+          this.btnLogin = 'Validar';
+
         } else {
           Swal.fire({
             title: '¡Oh, vaya!',
@@ -48,8 +63,33 @@ export class LoginComponent {
           })
         }
       });
+  }
 
-
+  validar() {
+    this.authservice.validarToken(this.formularioLogin.value.confirmar)
+      .subscribe(resp => {
+        if (!resp.mensaje) {
+          Swal.fire({
+            title: 'Bienvenido a ODAK',
+            text: resp[0]['nombre'] + ' ' + resp[0]['apellidos'],
+            imageUrl: '../../../assets/img/login/rayo-de-risa.svg',
+            imageHeight: '100',
+            timer: 2200,
+            showConfirmButton: false
+          }),
+            localStorage.setItem('token', resp[0]['token']);
+          this.router.navigateByUrl('/home/empresa');
+        } else {
+          Swal.fire({
+            title: '¡Oh, vaya!',
+            text: resp.mensaje,
+            imageUrl: '../../../assets/img/login/rayo-de-tristeza.svg',
+            imageHeight: '100',
+            timer: 2000,
+            showConfirmButton: false
+          })
+        }
+      })
   }
 
 }

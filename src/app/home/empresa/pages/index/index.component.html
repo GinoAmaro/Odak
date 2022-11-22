@@ -335,9 +335,9 @@
                             aria-expanded="false">
                             <div class="media d-flex align-items-center">
                                 <img class="avatar rounded-circle" alt="Image placeholder"
-                                    src="../../assets/img/team/Su.png">
+                                    src="../../assets/img/team/Gino.png">
                                 <div class="media-body ms-2 text-dark align-items-center d-none d-lg-block">
-                                    <span class="mb-0 font-small fw-bold text-gray-900">Susana San Martín</span>
+                                    <span class="mb-0 font-small fw-bold text-gray-900">{{nombreUsuario}}</span>
                                 </div>
                             </div>
                         </a>
@@ -379,7 +379,7 @@
                                 Contacto
                             </a>
                             <div role="separator" class="dropdown-divider my-1"></div>
-                            <a class="dropdown-item d-flex align-items-center" href="#">
+                            <a class="dropdown-item d-flex align-items-center" (click)="salir()">
                                 <svg class="dropdown-icon text-danger me-2" fill="none" stroke="currentColor"
                                     viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"

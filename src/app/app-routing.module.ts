@@ -16,8 +16,8 @@ const routes: Routes = [
   {
     path: 'home',
     loadChildren: () => import('./home/home.module').then(m => m.HomeModule),
-    // canLoad: [AuthGuard],
-    // canActivate: [AuthGuard]
+    canLoad: [AuthGuard],
+    canActivate: [AuthGuard]
   },
   {
     path: 'odak',
@@ -26,7 +26,6 @@ const routes: Routes = [
   {
     path: '**',
     redirectTo: 'odak'
-    // redirectTo: 'home/empresa/registrar-empresa'
   }
 ]
 
