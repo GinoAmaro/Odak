@@ -36,7 +36,7 @@ export class LoginComponent {
             timer: 1500,
             showConfirmButton: false
           })
-          this.router.navigateByUrl('/home/empresa');
+          // this.router.navigateByUrl('/home/empresa');
         } else {
           Swal.fire({
             title: '¡Oh, vaya!',
