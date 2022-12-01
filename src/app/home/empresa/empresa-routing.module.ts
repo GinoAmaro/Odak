@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { IndexComponent } from './pages/index/index.component';
 import { RegistrarEmpresaComponent } from './pages/registrar-empresa/registrar-empresa.component';
 
 const routes: Routes = [
@@ -9,7 +8,7 @@ const routes: Routes = [
     children: [
       {
         path: '',
-        component: IndexComponent
+        loadChildren: () => import('./pages/index/index.module').then(m => m.IndexModule),
       },
       {
         path: 'registrar-empresa',
