@@ -5,10 +5,10 @@ import { debounceTime, Subject } from 'rxjs';
 
 import { EmpresaService } from '../../services/empresa.service';
 import { Categoria, Referencia } from '../../interfaces/empresa';
-import { Router, ActivatedRoute } from '@angular/router';
-import { switchMap } from 'rxjs/operators';
+import { Router } from '@angular/router';
 
 import Swal from 'sweetalert2'
+import { AuthService } from '../../../../auth/services/auth.service';
 
 @Component({
   selector: 'app-registrar-empresa',
@@ -40,10 +40,9 @@ export class RegistrarEmpresaComponent implements OnInit {
   nombreBoton: string = 'Actualizar';
 
   referencia: string = '';
-  empresaReferencia: string = '1';
 
-
-
+  empresaReferencia: string = '0';
+  empresanumero: number = 0;
 
   debouncer: Subject<string> = new Subject();
 
@@ -75,9 +74,60 @@ export class RegistrarEmpresaComponent implements OnInit {
     private fb: FormBuilder,
     private sanitizer: DomSanitizer,
     private router: Router,
-    private activeRoute: ActivatedRoute) { }
+    private authService: AuthService) {
+
+
+  }
 
   ngOnInit() {
+
+    const token = localStorage.getItem('token');
+    this.authService.validarToken(token!)
+      .subscribe(resp => {
+
+        this.empresaReferencia = resp[0]['empresa'];
+        this.empresanumero = resp[0]['empresa'];
+
+        this.eService.consultarParaEditar(this.empresanumero)
+          .subscribe(empresa => {
+
+            this.formularioEmpresa.setValue({
+              id: empresa[0]['id'],
+              rut: empresa[0]['rut'],
+              nombre_fantasia: empresa[0]['nombre_fantasia'],
+              prueba: [''],
+              comuna: empresa[0]['comuna'],
+              direccion: empresa[0]['direccion'],
+              telefono: empresa[0]['telefono'],
+              titulo_descripcion: empresa[0]['titulo_descripcion'],
+              correo: empresa[0]['correo'],
+              linkedin: empresa[0]['linkedin'],
+              twitter: empresa[0]['twitter'],
+              facebook: empresa[0]['facebook'],
+              instagram: empresa[0]['instagram'],
+              whatsapp: empresa[0]['whatsapp'],
+              categoria: empresa[0]['categoria'],
+              descripcion: empresa[0]['descripcion'],
+              imagen_logo: empresa[0]['imagen_logo'],
+              imagen_fondo: empresa[0]['imagen_fondo'],
+              referencia: ['']
+            })
+            this.previsualizacionLogo = empresa[0]['imagen_logo'];
+            this.previsualizacionFondo = empresa[0]['imagen_fondo']
+          })
+
+        this.eService.buscarReferencia(this.empresaReferencia)
+          .subscribe(respuesta => {
+
+            if (respuesta.mensaje) {
+              console.log(respuesta.mensaje);
+              return
+            }
+            this.referencias = respuesta;
+          })
+
+      })
+
     this.debouncer
       .pipe(debounceTime(300))
       .subscribe(valor => {
@@ -89,46 +139,6 @@ export class RegistrarEmpresaComponent implements OnInit {
       this.nombreBoton = 'Registrar Empresa';
       return
     }
-
-    this.activeRoute.params
-      .pipe(switchMap(({ id }) => this.eService.consultarParaEditar(id)))
-      .subscribe(empresa => {
-
-        this.formularioEmpresa.setValue({
-          id: empresa[0]['id'],
-          rut: empresa[0]['rut'],
-          nombre_fantasia: empresa[0]['nombre_fantasia'],
-          prueba: [''],
-          comuna: empresa[0]['comuna'],
-          direccion: empresa[0]['direccion'],
-          telefono: empresa[0]['telefono'],
-          titulo_descripcion: empresa[0]['titulo_descripcion'],
-          correo: empresa[0]['correo'],
-          linkedin: empresa[0]['linkedin'],
-          twitter: empresa[0]['twitter'],
-          facebook: empresa[0]['facebook'],
-          instagram: empresa[0]['instagram'],
-          whatsapp: empresa[0]['whatsapp'],
-          categoria: empresa[0]['categoria'],
-          descripcion: empresa[0]['descripcion'],
-          imagen_logo: empresa[0]['imagen_logo'],
-          imagen_fondo: empresa[0]['imagen_fondo'],
-          referencia: ['']
-        })
-        this.previsualizacionLogo = empresa[0]['imagen_logo'];
-        this.previsualizacionFondo = empresa[0]['imagen_fondo']
-      })
-
-    this.activeRoute.params
-      .pipe(switchMap(({ id }) => this.eService.buscarReferencia(id)))
-      .subscribe(respuesta => {
-
-        if (respuesta.mensaje) {
-          console.log(respuesta.mensaje);
-          return
-        }
-        this.referencias = respuesta;
-      })
 
   }
 
@@ -277,6 +287,7 @@ export class RegistrarEmpresaComponent implements OnInit {
 
     this.eService.agregarReferencia({ id, empresa, descripcion })
       .subscribe(resp => {
+
         console.log(resp);
       })
 

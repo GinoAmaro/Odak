@@ -22,7 +22,7 @@ export class HeaderComponent implements OnInit {
       .subscribe(resp => {
         this.nombreUsuario = resp[0]['nombre'] + ' ' + resp[0]['apellidos'];
 
-        this.idEmpresa = resp[0]['id'];
+        this.idEmpresa = resp[0]['empresa'];
       })
   }
 

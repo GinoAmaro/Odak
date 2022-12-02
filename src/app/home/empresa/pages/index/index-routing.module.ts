@@ -34,7 +34,7 @@ const routes: Routes = [
         component: RegistrarEmpresaComponent
       },
       {
-        path: 'editar-empresa/:id',
+        path: 'editar-empresa',
         component: RegistrarEmpresaComponent
       },
       {
