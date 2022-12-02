@@ -8,6 +8,8 @@ import { RegistrarEmpresaComponent } from './pages/registrar-empresa/registrar-e
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { HeaderComponent } from './components/header/header.component';
 import { CalculadoraComponent } from './pages/calculadora/calculadora.component';
+import { TableroComponent } from './pages/tablero/tablero.component';
+import { CotizacionComponent } from './pages/cotizacion/cotizacion.component';
 
 
 
@@ -17,7 +19,9 @@ import { CalculadoraComponent } from './pages/calculadora/calculadora.component'
     RegistrarEmpresaComponent,
     DashboardComponent,
     HeaderComponent,
-    CalculadoraComponent
+    CalculadoraComponent,
+    TableroComponent,
+    CotizacionComponent
   ],
   imports: [
     CommonModule,
