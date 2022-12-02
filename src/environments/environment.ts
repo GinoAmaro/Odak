@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  baseURL:'http://192.168.0.5/odak'
+  baseURL:'http://localhost/odak'
 };
 
 /*

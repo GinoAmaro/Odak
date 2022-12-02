@@ -37,6 +37,7 @@ export class RegistrarEmpresaComponent implements OnInit {
   verBarra: boolean = false;
   hayError: boolean = false;
   mostrarReferencias: boolean = true;
+  nombreBoton: string = 'Actualizar';
 
   referencia: string = '';
   empresaReferencia: string = '1';
@@ -85,6 +86,7 @@ export class RegistrarEmpresaComponent implements OnInit {
 
     if (!this.router.url.includes('editar')) {
       this.mostrarReferencias = false;
+      this.nombreBoton = 'Registrar Empresa';
       return
     }
 

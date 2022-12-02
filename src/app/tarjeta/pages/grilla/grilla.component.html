@@ -1,5 +1,5 @@
-<main>
-    <div class="fondo-grilla">
+<div class="fondo-grilla">
+    <main>
         <section class="section-header overflow-hidden pt-7 pt-lg-8 pb-9 pb-lg-12 bg-primary text-white">
             <div class="container">
                 <div class="row">
@@ -14,8 +14,9 @@
                                         clip-rule="evenodd"></path>
                                 </svg>
                             </span>
-                            <input type="text" autocomplete="off" class="form-control" name="consulta" [(ngModel)]="consulta" placeholder="Buscar"
-                                aria-label="Search" aria-describedby="topbar-addon">
+                            <input type="text" autocomplete="off" class="form-control" name="consulta"
+                                [(ngModel)]="consulta" placeholder="Buscar" aria-label="Search"
+                                aria-describedby="topbar-addon">
                         </div>
                     </form>
                 </div>
@@ -31,8 +32,8 @@
                             <a [href]="'/odak/'+empresa[idEmpresa].id" target="_blank">
                                 <div class="px-3 px-lg-4 py-5 text-center">
                                     <img [src]="empresa[idEmpresa].imagen_logo" class="logo-landing">
-                                    <br/>
-                                    <br/>
+                                    <br />
+                                    <br />
                                     <h5 class="fw-bold text-primary">{{empresa[idEmpresa].nombre_fantasia}}</h5>
                                 </div>
                             </a>
@@ -40,7 +41,6 @@
                     </div>
                 </div>
             </div>
-
         </section>
-    </div>
-</main>
+    </main>
+</div>

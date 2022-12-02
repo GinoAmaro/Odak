@@ -10,6 +10,7 @@ import { HeaderComponent } from './components/header/header.component';
 import { CalculadoraComponent } from './pages/calculadora/calculadora.component';
 import { TableroComponent } from './pages/tablero/tablero.component';
 import { CotizacionComponent } from './pages/cotizacion/cotizacion.component';
+import { HomeComponent } from './pages/home/home.component';
 
 
 
@@ -21,7 +22,8 @@ import { CotizacionComponent } from './pages/cotizacion/cotizacion.component';
     HeaderComponent,
     CalculadoraComponent,
     TableroComponent,
-    CotizacionComponent
+    CotizacionComponent,
+    HomeComponent
   ],
   imports: [
     CommonModule,

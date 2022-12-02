@@ -11,7 +11,6 @@ import { Router } from '@angular/router';
 export class IndexComponent implements OnInit {
 
 
-
   constructor(private authService: AuthService, private router: Router) { }
 
   ngOnInit(): void {

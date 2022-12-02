@@ -11,14 +11,6 @@ const routes: Routes = [
         loadChildren: () => import('./pages/index/index.module').then(m => m.IndexModule),
       },
       {
-        path: 'registrar-empresa',
-        component: RegistrarEmpresaComponent
-      },
-      {
-        path: 'editar-empresa/:id',
-        component: RegistrarEmpresaComponent
-      },
-      {
         path: '**',
         redirectTo: ''
       }

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/auth/services/auth.service';
 
@@ -11,7 +11,8 @@ import { AuthService } from 'src/app/auth/services/auth.service';
 export class HeaderComponent implements OnInit {
 
   nombreUsuario: string = '';
-  idEmpresa: string = '';
+  idEmpresa: number = 0;
+
 
   constructor(private authService: AuthService, private router: Router) { }
 
@@ -20,7 +21,8 @@ export class HeaderComponent implements OnInit {
     this.authService.validarToken(token!)
       .subscribe(resp => {
         this.nombreUsuario = resp[0]['nombre'] + ' ' + resp[0]['apellidos'];
-        this.idEmpresa = resp[0]['empresa'];
+
+        this.idEmpresa = resp[0]['id'];
       })
   }
 
