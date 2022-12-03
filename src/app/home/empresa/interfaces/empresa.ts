@@ -4,7 +4,7 @@ export interface Categoria {
 }
 
 export interface Empresa {
-    id:string;
+    id: string;
     rut: string;
     nombre_fantasia: string;
     categoria: string;
@@ -25,16 +25,21 @@ export interface Empresa {
     mensaje?: string
 }
 
-export interface Cotizacion{
-    empresa:string;
-    cliente:string;
-    correo_cliente:string;
-    telefono_cliente:string;
-    solicitud_cliente:string;
+export interface Cotizacion {
+    empresa: string;
+    cliente: string;
+    correo_cliente: string;
+    telefono_cliente: string;
+    solicitud_cliente: string;
 }
 
 export interface Referencia {
-    id:number;
-    empresa:string;
-    descripcion:string;
+    id: number;
+    empresa: string;
+    descripcion: string;
+}
+
+export interface ContarCotizacion {
+    empresa: number;
+    cantidad: number;
 }

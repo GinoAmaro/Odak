@@ -213,7 +213,7 @@ export class RegistrarEmpresaComponent implements OnInit {
       cancelButtonText: 'Cancelar',
     }).then((result) => {
       if (result.isConfirmed) {
-        // this.router.navigateByUrl('home/empresa');
+        this.router.navigateByUrl('home/empresa');
         this.eService.actualizarEmpresa(this.formularioEmpresa.value).subscribe(resp => {
           Swal.fire({
             title: resp.mensaje,
