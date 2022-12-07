@@ -116,16 +116,20 @@ export class TarjetaEmpresaComponent implements OnInit {
         const dato = this.formularioCotizar.value;
         this.eService.cotizarEmpresa(dato)
           .subscribe(resp => {
-            if (resp.mensaje) {
-              Swal.fire({
-                title: resp.mensaje,
-                imageUrl: '../../../assets/img/login/rayo-de-risa.svg',
-                imageHeight: '100',
-                footer: ' <b>ODAK</b>&nbsp' + this.datoEmpresa.nombre_fantasia,
-                timer: 2500,
-                showConfirmButton: false
-              })
-            }
+            console.log(dato);
+            
+            console.log(resp);
+            
+            // if (resp.mensaje) {
+            //   Swal.fire({
+            //     title: resp.mensaje,
+            //     imageUrl: '../../../assets/img/login/rayo-de-risa.svg',
+            //     imageHeight: '100',
+            //     footer: ' <b>ODAK</b>&nbsp' + this.datoEmpresa.nombre_fantasia,
+            //     timer: 2500,
+            //     showConfirmButton: false
+            //   })
+            // }
           })
         this.formularioCotizar.reset();
       }

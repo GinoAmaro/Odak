@@ -1,0 +1,58 @@
+<div class="fondo-grilla">
+    <main>
+        <section class="section-header overflow-hidden pt-7 pt-lg-8 pb-9 pb-lg-12 bg-primary">
+            <div class="bannerodak d-none d-lg-block">
+                <img src="../../../../assets/img/index/blanco.svg" width="650" class=d-block my-1>
+            </div>
+            <div class="container">
+                <h2 class="text-white">Realiza seguimiento en línea</h2>
+                <br>
+                <div class="row">
+                    <div class="col-6 col-sm-6 col-lg-6">
+
+                        <form (ngSubmit)="buscando()">
+                            <div class="input-group">
+                                <span class="input-group-text" id="topbar-addon">
+                                    <svg class="icon icon-xs" x-description="Heroicon name: solid/search"
+                                        xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"
+                                        aria-hidden="true">
+                                        <path fill-rule="evenodd"
+                                            d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z"
+                                            clip-rule="evenodd"></path>
+                                    </svg>
+                                </span>
+                                <input type="text" autocomplete="off" class="form-control" name="consulta"
+                                    [(ngModel)]="consulta" placeholder="Buscar" aria-label="Search"
+                                    aria-describedby="topbar-addon">
+                            </div>
+                        </form>
+                    </div>
+                    <div class="col-6 col-sm-6 col-lg-6"></div>
+                    <br><br><br>
+
+                    <div class="row" *ngFor="let item of respuestaCotizacion">
+                        <div class="col-12 col-sm-12 col-lg-12">
+                            <h2 class="text-white">Hola {{item.cliente}}:</h2>
+                            <br>
+                            <h4 class="fecha-cotizacion">{{item.fecha_solicitud}}</h4>
+                            <span class="text-white">Realizaste una solicitud en <b>{{item.nombre_fantasia}}</b>
+                                , y ordenaste:
+                            </span>
+                            <h5 class="text-white">{{item.solicitud_cliente}}</h5>
+                            <br>
+                        </div>
+                    </div>
+
+                    <div class="row" *ngFor="let item of respuestaSeguimiento">
+                        <div class="col-12 col-sm-12 col-lg-12">
+                            <h4 class="fecha-cotizacion">{{item.fecha}}</h4>
+                            <span class="text-white"><b>{{item.descripcion}}</b>. Estado de solicitud:
+                                <b>{{item.estado}}</b></span>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+    </main>
+</div>

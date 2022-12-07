@@ -1,1 +1,91 @@
-<p>cotizacion works!</p>
+<div class="py-4">
+    <!-- <div class="dropdown">
+
+    </div> -->
+</div>
+
+<div class="row">
+    <div class="mensaje" *ngIf="cotizacion">
+        <h1>No hay cotizaciones pendientes
+            <img src="../../../../assets/img/login/rayo-de-risa.svg" width="75">
+        </h1>
+    </div>
+    <div class="row" *ngIf="!cotizacion">
+        <div class="col-4 col-sm-4 col-xl-4 mb-4" *ngFor="let item of listaCotizaciones; let idControl=index">
+            <div class="card border-0 shadow">
+                <div class="card-body">
+                    <div class="row d-block d-xl-flex align-items-center">
+                        <div
+                            class="col-12 col-xl-5 text-xl-center mb-3 mb-xl-0 d-flex align-items-center justify-content-xl-center">
+                            <div class="icon-shape icon-shape-primary rounded me-4 me-sm-0">
+                                <svg class="icon" fill="currentColor" viewBox="0 0 20 20"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <path
+                                        d="M13 6a3 3 0 11-6 0 3 3 0 016 0zM18 8a2 2 0 11-4 0 2 2 0 014 0zM14 15a4 4 0 00-8 0v3h8v-3zM6 8a2 2 0 11-4 0 2 2 0 014 0zM16 18v-3a5.972 5.972 0 00-.75-2.906A3.005 3.005 0 0119 15v3h-3zM4.75 12.094A5.973 5.973 0 004 15v3H1v-3a3 3 0 013.75-2.906z">
+                                    </path>
+                                </svg>
+                            </div>
+                            <div class="d-sm-none">
+                                <h3 class="fw-extrabold mb-1">{{item.cliente}}</h3>
+                            </div>
+                        </div>
+                        <div class="col-12 col-xl-7 px-xl-0">
+                            <div class="d-none d-sm-block">
+                                <h2 class="h6 text-gray-400 mb-0">{{item.fecha_solicitud}}
+                                </h2>
+                                <h3 class="fw-extrabold mb-2">{{item.cliente}}</h3>
+                            </div>
+                            <small class="d-flex align-items-center text-gray-500">
+                                <svg class="icon icon-xxs text-gray-500 ms-2 me-1" fill="currentColor"
+                                    viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
+                                    <path fill-rule="evenodd"
+                                        d="M8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10zm0-7a3 3 0 1 1 0-6 3 3 0 0 1 0 6z"
+                                        clip-rule="evenodd"></path>
+                                </svg> Rancagua
+                            </small>
+                            <div class="small d-flex mt-1">
+                                <div>
+                                    <a href="mailto:{{item.correo_cliente}}">
+                                        {{item.correo_cliente}}
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="small d-flex mt-1">
+                                <div>
+                                    <h2 class="h6 mb-0">
+                                        {{item.telefono_cliente}}
+                                    </h2>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="py-2"></div>
+                        <div class="col-12 col-xl-12 px-xl-0">
+                            <div class="d-none d-sm-block">
+                                <h6>Descripción</h6>
+                                {{item.solicitud_cliente}}
+                            </div>
+                        </div>
+                        <div class="py-4"></div>
+                        <div class="col-6 col-xl-6 px-xl-0">
+                            <div align="center">
+                                <button class="btn btn-primary " type="submit"
+                                    (click)="aceptarCotizacion(item.id,idControl)">
+                                    Aceptar
+                                </button>
+                            </div>
+                        </div>
+                        <div class="col-6 col-xl-6 px-xl-0">
+                            <div align="center">
+                                <button class="btn btn-secondary sugerencia-lista" type="submit"
+                                    (click)="rechazarCotizacion(item.id,idControl)">
+                                    Cancelar
+                                </button>
+                            </div>
+                        </div>
+                        <div class="py-1"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

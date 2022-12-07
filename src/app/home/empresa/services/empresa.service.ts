@@ -4,7 +4,8 @@ import { map, catchError } from 'rxjs/operators';
 import { Observable, tap, of } from 'rxjs';
 
 import { environment } from 'src/environments/environment';
-import { Categoria, Empresa, Cotizacion, Referencia, ContarCotizacion } from '../interfaces/empresa';
+import { Categoria, Empresa, Cotizacion, Referencia, ContarCotizacion, ResolverCotizacion, Cotizar } from '../interfaces/empresa';
+import { buscarCotizacion, buscarSeguimiento } from '../interfaces/seguimiento';
 
 @Injectable({
   providedIn: 'root'
@@ -35,20 +36,41 @@ export class EmpresaService {
     const url = this.baseUrl + "?consultarEmpresa=";
     return this.http.get<Empresa[]>(url + id);
   }
+
   consultarParaEditar(id: number): Observable<Empresa[]> {
     const url = this.baseUrl + "?consultarParaEditar=";
     return this.http.get<Empresa[]>(url + id);
   }
 
-  cotizarEmpresa(datoCotizar: Cotizacion) {
+  cotizarEmpresa(datoCotizar: Cotizar) {
     const url = this.baseUrl + "?cotizarEmpresa=";
-    return this.http.post<Cotizacion>(url, datoCotizar)
+    return this.http.post<Cotizar[]>(url, datoCotizar)
       .pipe(
         tap(resp => {
         }),
         map(resp => resp),
         catchError(err => of(err.error.mensaje))
       )
+  }
+
+  listarCotizaciones(id: number) {
+    const url = this.baseUrl + "?listarCotizaciones=";
+    return this.http.get<Cotizacion[]>(url + id)
+      .pipe(
+        map(resp => resp),
+        catchError(err => of(err.error.mensaje))
+      );
+  }
+
+  resolverCotizacion(resolver: ResolverCotizacion) {
+    const url = this.baseUrl + "?resolverCotizacion=";
+    return this.http.post<ResolverCotizacion[]>(url, resolver)
+      .pipe(
+        tap(resp => {
+        }),
+        map(resp => resp),
+        catchError(err => of(err.error.mensaje))
+      );
   }
 
   landingEmpresa(): Observable<Empresa[]> {
@@ -58,16 +80,16 @@ export class EmpresaService {
 
   contarCotizacion(id: number): Observable<ContarCotizacion[]> {
     const url = this.baseUrl + "?contarCotizacion=";
-    return this.http.get<ContarCotizacion[]>(url + id);
+    return this.http.get<ContarCotizacion[]>(url + id)
   }
-  
+
   grillaEmpresa(consulta: string) {
     const url = this.baseUrl + "?grillaEmpresa=";
     return this.http.get<Empresa[]>(url + consulta)
       .pipe(
         map(resp => resp),
         catchError(err => of(err.error.mensaje))
-      )
+      );
   }
 
   agregarReferencia(datoreferencia: Referencia) {
@@ -75,7 +97,7 @@ export class EmpresaService {
     return this.http.post<Referencia>(url, datoreferencia)
   }
 
-  buscarReferencia(consulta: string){
+  buscarReferencia(consulta: string) {
     const url = this.baseUrl + "?buscarReferencia=";
     return this.http.get<Referencia[]>(url + consulta)
       .pipe(
@@ -87,10 +109,28 @@ export class EmpresaService {
   borrarReferencia(id: number): Observable<Referencia> {
     const url = this.baseUrl + "?borrarReferencia=";
     return this.http.get<Referencia>(url + id)
-    .pipe(
-      map(resp => resp),
-      catchError(err => of(err.error.mensaje))
-    )
+      .pipe(
+        map(resp => resp),
+        catchError(err => of(err.error.mensaje))
+      )
+  }
+
+  buscarCotizacion(id: number) {
+    const url = this.baseUrl + "?buscarCotizacion=";
+    return this.http.get<buscarCotizacion[]>(url + id)
+      .pipe(
+        map(resp => resp),
+        catchError(err => of(err.error.mensaje))
+      );
+  }
+
+  buscarSeguimiento(id: number) {
+    const url = this.baseUrl + "?buscarSeguimiento=";
+    return this.http.get<buscarSeguimiento[]>(url + id)
+      .pipe(
+        map(resp => resp),
+        catchError(err => of(err.error.mensaje))
+      );
   }
 
 }

@@ -4,6 +4,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { IndexComponent } from './pages/index/index.component';
 import { TarjetaEmpresaComponent } from './pages/tarjeta-empresa/tarjeta-empresa.component';
 import { GrillaComponent } from './pages/grilla/grilla.component';
+import { SeguimientoComponent } from './pages/seguimiento/seguimiento.component';
 
 const routes: Routes = [
   {
@@ -16,6 +17,10 @@ const routes: Routes = [
       {
         path: '',
         component: IndexComponent
+      },
+      {
+        path: 'seguimiento',
+        component: SeguimientoComponent
       },
       {
         path: ':id',
