@@ -8,9 +8,22 @@
     background-image: linear-gradient(to top, #cfd9df 0%, #e2ebf0 100%);
 } */
 
+.indice_rojo{
+    color: #be0303;
+}
+
+.indice_verde{
+    color: #11a30c;
+}
+
+.indice_plomo{
+    color: #313131;
+}
+
 .fecha-cotizacion{
     color: #52796f;
 }
+
 
 .fondo-grilla{
     width: 100%;

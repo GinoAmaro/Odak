@@ -25,7 +25,7 @@ const routes: Routes = [
   },
   {
     path: '**',
-    redirectTo: 'home/empresa'
+    redirectTo: 'odak'
   }
 ]
 

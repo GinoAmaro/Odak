@@ -1,1 +1,176 @@
-<h1>hola mundo</h1>
+<div class="py-4 vh-lg-100">
+    <div class="row">
+        <div class="col-12 mb-4">
+            <div class="card border-0 shadow">
+                <div class="card-header d-sm-flex flex-row align-items-center flex-0">
+                    <div class="d-block mb-3 mb-sm-0">
+                        <h2 class="fs-3 fw-extrabold">Indicadores Económicos</h2>
+                    </div>
+                </div>
+
+                <!-- Tabla Indicadores-->
+                <div class="card-body p-2">
+                    <div class="table-responsive">
+                        <table id="tabla-indicadores">
+                            <thead>
+                                <tr>
+                                    <th>Dolar</th>
+                                    <th>Euro</th>
+                                    <th>BITCOIN</th>
+                                    <th>UF</th>
+                                    <th>UTM</th>
+                                    <th>IPC</th>
+                                    <th>IVP</th>
+                                    <th>IMACEC</th>
+
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>
+
+                                        <b class="indice_plomo"> ${{indicadores.dolar.valor}}</b>
+                                    </td>
+                                    <td>
+                                        <b class="indice_plomo"> ${{indicadores.euro.valor}}</b>
+                                    </td>
+                                    <td>
+                                        <b class="indice_plomo"> USD {{indicadores.bitcoin.valor | number}}</b>
+                                    </td>
+                                    <td>
+                                        <b class="indice_plomo"> ${{indicadores.uf.valor | number}}</b>
+                                    </td>
+                                    <td>
+                                        <b class="indice_plomo"> ${{indicadores.utm.valor | number}}</b>
+                                    </td>
+                                    <td>
+                                        <b class="indice_plomo"> {{indicadores.ipc.valor}}%</b>
+                                    </td>
+                                    <td>
+                                        <b class="indice_plomo"> ${{indicadores.ivp.valor | number}}</b>
+                                    </td>
+                                    <td *ngIf="indicadores.imacec.valor < 0">
+                                        <b class="indice_rojo">{{indicadores.imacec.valor}}%</b>
+                                    </td>
+                                    <td *ngIf="indicadores.imacec.valor > 0">
+                                        <b class="indice_verde">{{indicadores.imacec.valor}}%</b>
+                                    </td>
+                                </tr>
+
+                            </tbody>
+                        </table>
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+        <div class="col-12 col-sm-6 col-xl-6 mb-6">
+            <div class="card border-0 shadow">
+                <div class="card-body">
+                    <div class="row d-block d-xl-flex align-items-center">
+                        <div
+                            class="col-12 col-xl-5 text-xl-center mb-3 mb-xl-0 d-flex align-items-center justify-content-xl-center">
+                            <h2 class="fs-3 fw-extrabold text-center">Calcular Boleta</h2>
+                        </div>
+
+                    </div>
+                    <div class="card-body p-2">
+                        <form (ngSubmit)="cambio()">
+
+
+                            <!--FORMULARIO-->
+                            <label>Ingresa Valor</label>
+                            <input type="number" class="input-group-text" [(ngModel)]="valor" name="valor">
+                            <h5>Valor Liquido</h5>
+                            <button type="button" class="btn btn-gray-800">
+                                Calcular
+                            </button>
+                            <br><br>
+                            <div *ngIf="boletaRetencionIncluida > 0">
+                                <label>Ganancia con retención inluida: </label>
+                                <p class="indice_plomo">${{boletaRetencionIncluida | number}}</p>
+                            </div>
+                            <div *ngIf="boletaMasRetencion > 0">
+                                <label>Boleta mas retencion:</label>
+                                <p class="indice_plomo">${{boletaMasRetencion | number}}</p>
+                            </div>
+
+                        </form>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+        <div class="col-12 col-sm-6 col-xl-6 mb-6">
+            <div class="card border-0 shadow">
+                <div class="card-body">
+                    <div class="row d-block d-xl-flex align-items-center">
+                        <div
+                            class="col-12 col-xl-5 text-xl-center mb-3 mb-xl-0 d-flex align-items-center justify-content-xl-center">
+                            <h2 class="fs-3 fw-extrabold text-center">Calcular Factura</h2>
+                        </div>
+                    </div>
+                    <div class="card-body p-2">
+                        <div *ngIf="boletaRetencionIncluida > 0">
+                            <label>Ganancia con IVA incluido: </label>
+                            <p class="indice_plomo">${{ivaIncluido | number}}</p>
+                        </div>
+                        <div *ngIf="boletaRetencionIncluida > 0">
+                            <label>Valor + IVA: </label>
+                            <p class="indice_plomo">${{masIva | number}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-12 mb-4" *ngIf="conversionDolar > 0">
+            <div class="card border-0 shadow">
+                <div class="card-header d-sm-flex flex-row align-items-center flex-0">
+                    <div class="d-block mb-3 mb-sm-0">
+                        <h2 class="fs-3 fw-extrabold">Conversion sobre valores actuales</h2>
+                    </div>
+                </div>
+
+                <!-- Tabla Indicadores-->
+                <div class="card-body p-0">
+                    <div class="table-responsive">
+                        <table id="tabla-indicadores">
+                            <thead>
+                                <tr>
+                                    <th>Dolar</th>
+                                    <th>Euro</th>
+                                    <th>UF</th>
+                                    <th>UTM</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        <b class="indice_plomo"> USD {{conversionDolar | number}}</b>
+                                    </td>
+                                    <td>
+                                        <b class="indice_plomo"> EUR {{conversionEuro | number}}</b>
+                                    </td>
+                                    <td>
+                                        <b class="indice_plomo"> UF {{conversionUf | number}}</b>
+                                    </td>
+                                    <td>
+                                        <b class="indice_plomo"> UTM {{conversionUtm | number}}</b>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+    </div>
+</div>
