@@ -22,32 +22,36 @@
                                     </svg>
                                 </span>
                                 <input type="text" autocomplete="off" class="form-control" name="consulta"
-                                    [(ngModel)]="consulta" placeholder="Buscar" aria-label="Search"
-                                    aria-describedby="topbar-addon">
+                                    [(ngModel)]="consulta" (input)="teclaPresionada()" placeholder="Buscar"
+                                    aria-label="Search" aria-describedby="topbar-addon">
                             </div>
                         </form>
                     </div>
                     <div class="col-6 col-sm-6 col-lg-6"></div>
                     <br><br><br>
-
-                    <div class="row" *ngFor="let item of respuestaCotizacion">
-                        <div class="col-12 col-sm-12 col-lg-12">
-                            <h2 class="text-white">Hola {{item.cliente}}:</h2>
-                            <br>
-                            <h4 class="fecha-cotizacion">{{item.fecha_solicitud}}</h4>
-                            <span class="text-white">Realizaste una solicitud en <b>{{item.nombre_fantasia}}</b>
-                                , y ordenaste:
-                            </span>
-                            <h5 class="text-white">{{item.solicitud_cliente}}</h5>
-                            <br>
-                        </div>
+                    <div *ngIf="noEncontrado">
+                        <span class="text-white">Seguimiento no encontrado: <b>{{consulta}}</b> </span>
                     </div>
+                    <div *ngIf="!noEncontrado">
+                        <div class="row" *ngFor="let item of respuestaCotizacion">
+                            <div class="col-12 col-sm-12 col-lg-12">
+                                <h2 class="text-white">Hola {{item.cliente}}:</h2>
+                                <br>
+                                <h4 class="fecha-cotizacion">{{item.fecha_solicitud}}</h4>
+                                <span class="text-white">Realizaste una solicitud en <b>{{item.nombre_fantasia}}</b>
+                                    , y ordenaste:
+                                </span>
+                                <h5 class="text-white">{{item.solicitud_cliente}}</h5>
+                                <br>
+                            </div>
+                        </div>
 
-                    <div class="row" *ngFor="let item of respuestaSeguimiento">
-                        <div class="col-12 col-sm-12 col-lg-12">
-                            <h4 class="fecha-cotizacion">{{item.fecha}}</h4>
-                            <span class="text-white"><b>{{item.descripcion}}</b>. Estado de solicitud:
-                                <b>{{item.estado}}</b></span>
+                        <div class="row" *ngFor="let item of respuestaSeguimiento">
+                            <div class="col-12 col-sm-12 col-lg-12">
+                                <h4 class="fecha-cotizacion">{{item.fecha}}</h4>
+                                <span class="text-white"><b>{{item.descripcion}}</b>. Estado de solicitud:
+                                    <b>{{item.estado}}</b></span>
+                            </div>
                         </div>
                     </div>
 

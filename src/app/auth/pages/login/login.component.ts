@@ -22,9 +22,9 @@ export class LoginComponent {
     confirmar: ['']
   })
 
-  constructor(private fb: FormBuilder, private router: Router, private authservice: AuthService) {
-
-  }
+  constructor(private fb: FormBuilder,
+    private router: Router,
+    private authservice: AuthService) { }
 
   ingresar() {
     if (this.btnLogin == 'Iniciar Sesión') {

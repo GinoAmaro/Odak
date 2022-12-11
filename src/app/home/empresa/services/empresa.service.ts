@@ -115,7 +115,7 @@ export class EmpresaService {
       )
   }
 
-  buscarCotizacion(id: number) {
+  buscarCotizacion(id: string) {
     const url = this.baseUrl + "?buscarCotizacion=";
     return this.http.get<buscarCotizacion[]>(url + id)
       .pipe(
@@ -124,7 +124,7 @@ export class EmpresaService {
       );
   }
 
-  buscarSeguimiento(id: number) {
+  buscarSeguimiento(id: string) {
     const url = this.baseUrl + "?buscarSeguimiento=";
     return this.http.get<buscarSeguimiento[]>(url + id)
       .pipe(
