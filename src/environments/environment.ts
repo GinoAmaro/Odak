@@ -4,7 +4,8 @@
 
 export const environment = {
   production: false,
-  baseURL:'http://localhost/odak'
+  baseURL:'http://localhost/odak',
+  baseIndicadores:'https://mindicador.cl/api'
 };
 
 /*

@@ -6,6 +6,7 @@ import { Observable, tap, of } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { Categoria, Empresa, Cotizacion, Referencia, ContarCotizacion, ResolverCotizacion, Cotizar } from '../interfaces/empresa';
 import { buscarCotizacion, buscarSeguimiento } from '../interfaces/seguimiento';
+import { Indicadores } from '../interfaces/indicadores';
 
 @Injectable({
   providedIn: 'root'
@@ -13,6 +14,7 @@ import { buscarCotizacion, buscarSeguimiento } from '../interfaces/seguimiento';
 export class EmpresaService {
 
   private baseUrl: string = environment.baseURL + "/usuarios/empresa/crud-empresa.php";
+  private baseIndicadores: string = environment.baseIndicadores;
 
   constructor(private http: HttpClient) { }
 
@@ -133,5 +135,8 @@ export class EmpresaService {
       );
   }
 
-}
+  idicadoresEconomicos(): Observable<Indicadores> {
+    return this.http.get<Indicadores>(this.baseIndicadores)
+  }
 
+}
