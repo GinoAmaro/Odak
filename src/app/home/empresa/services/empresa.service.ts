@@ -46,13 +46,11 @@ export class EmpresaService {
 
   cotizarEmpresa(datoCotizar: Cotizar) {
     const url = this.baseUrl + "?cotizarEmpresa=";
-    return this.http.post<Cotizar[]>(url, datoCotizar)
-      .pipe(
-        tap(resp => {
-        }),
-        map(resp => resp),
-        catchError(err => of(err.error.mensaje))
-      )
+    return this.http.post<Cotizar>(url, datoCotizar)
+    .pipe(
+      map(resp => resp),
+      catchError(err => of(err.error.mensaje))
+    )
   }
 
   listarCotizaciones(id: number) {
@@ -137,6 +135,15 @@ export class EmpresaService {
 
   idicadoresEconomicos(): Observable<Indicadores> {
     return this.http.get<Indicadores>(this.baseIndicadores)
+  }
+
+  listarColaboradoresCotizacion(id: number) {
+    const url = this.baseUrl + "?listarColaboradoresCotizacion=";
+    return this.http.get<Cotizacion[]>(url + id)
+      .pipe(
+        map(resp => resp),
+        catchError(err => of(err.error.mensaje))
+      );
   }
 
 }

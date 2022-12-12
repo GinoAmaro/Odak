@@ -60,4 +60,10 @@ export interface ContarCotizacion {
 export interface ResolverCotizacion {
     id: number;
     decision: string;
+    colaborador?: number;
+}
+
+export interface Colaboradores {
+    id: number;
+    nombre: string;
 }

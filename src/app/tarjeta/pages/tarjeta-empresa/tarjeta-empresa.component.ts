@@ -46,7 +46,7 @@ export class TarjetaEmpresaComponent implements OnInit {
     cliente: ['Gino Amaro'],
     correo_cliente: ['emzero1@gmail.com'],
     telefono_cliente: ['972003262'],
-    solicitud_cliente: ['Compra de Cereza 10 kilos']
+    solicitud_cliente: ['']
   })
 
   prueba: any;
@@ -116,20 +116,15 @@ export class TarjetaEmpresaComponent implements OnInit {
         const dato = this.formularioCotizar.value;
         this.eService.cotizarEmpresa(dato)
           .subscribe(resp => {
-            console.log(dato);
-            
-            console.log(resp);
-            
-            // if (resp.mensaje) {
-            //   Swal.fire({
-            //     title: resp.mensaje,
-            //     imageUrl: '../../../assets/img/login/rayo-de-risa.svg',
-            //     imageHeight: '100',
-            //     footer: ' <b>ODAK</b>&nbsp' + this.datoEmpresa.nombre_fantasia,
-            //     timer: 2500,
-            //     showConfirmButton: false
-            //   })
-            // }
+            Swal.fire({
+              title: 'Cotizacion enviada',
+              imageUrl: '../../../assets/img/login/rayo-de-risa.svg',
+              imageHeight: '100',
+              footer: ' <b>ODAK</b>&nbsp' + this.datoEmpresa.nombre_fantasia,
+              timer: 2500,
+              showConfirmButton: false
+            })
+
           })
         this.formularioCotizar.reset();
       }

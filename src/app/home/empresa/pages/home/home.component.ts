@@ -26,7 +26,6 @@ export class HomeComponent implements OnInit {
           .subscribe(resp => {
             this.cantidadCotizacion = resp[0]['cantidad'];
           })
-
       })
 
   }

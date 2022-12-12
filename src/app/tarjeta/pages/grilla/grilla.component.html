@@ -16,7 +16,7 @@
                             </span>
                             <input type="text" autocomplete="off" class="form-control" name="consulta"
                                 [(ngModel)]="consulta" placeholder="Buscar" aria-label="Search"
-                                aria-describedby="topbar-addon">
+                                aria-describedby="topbar-addon" (input)="teclaPresionada()">
                         </div>
                     </form>
                 </div>

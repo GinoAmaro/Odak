@@ -66,6 +66,23 @@
                             </div>
                         </div>
                         <div class="py-4"></div>
+                        <div class="col-12 col-xl-12 px-xl-0">
+                            <div class="row">
+                                <div class="col-3 col-xl-3 px-xl-0"></div>
+                                <div class="col-6 col-xl-6 px-xl-0">
+                                    <div align="center">
+
+                                        <select *ngFor="let colaborador of listaColaboradores" class="form-select"
+                                            required [(ngModel)]="trabajador" name="trabajador">
+                                            <option value="{{colaborador.id}}">{{colaborador.nombre}}</option>
+                                        </select>
+
+                                    </div>
+                                </div>
+                                <div class="col-3 col-xl-3 px-xl-0"></div>
+                            </div>
+                            <br>
+                        </div>
                         <div class="col-6 col-xl-6 px-xl-0">
                             <div align="center">
                                 <button class="btn btn-primary " type="submit"

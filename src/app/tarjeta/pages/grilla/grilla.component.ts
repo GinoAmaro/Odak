@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { of } from 'rxjs';
-import { catchError, map, tap } from 'rxjs/operators';
+import { of, Subject } from 'rxjs';
+import { debounceTime } from 'rxjs/operators';
 import { Empresa } from 'src/app/home/empresa/interfaces/empresa';
 import { EmpresaService } from 'src/app/home/empresa/services/empresa.service';
 
@@ -16,6 +16,8 @@ export class GrillaComponent implements OnInit {
   consulta: string = "";
   mensaje: string = "";
 
+  debouncer: Subject<string> = new Subject();
+
   constructor(private eService: EmpresaService) { }
 
   ngOnInit(): void {
@@ -23,9 +25,16 @@ export class GrillaComponent implements OnInit {
       .subscribe(resp => {
         this.empresa = resp;
       })
+
+    this.debouncer
+      .pipe(debounceTime(100))
+      .subscribe(valor => {
+        this.mensaje = '';
+      })
   }
 
   buscando() {
+    if (this.consulta.trim().length === 0) { return }
     this.eService.grillaEmpresa(this.consulta)
       .subscribe(resp => {
         if (resp.mensaje) {
@@ -37,6 +46,10 @@ export class GrillaComponent implements OnInit {
           this.empresa = resp
         }
       })
+  }
+
+  teclaPresionada() {
+    this.debouncer.next(this.consulta);
   }
 
 }

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { EmpresaService } from '../../services/empresa.service';
-import { Cotizacion } from '../../interfaces/empresa';
+import { Cotizacion, Colaboradores } from '../../interfaces/empresa';
 import { AuthService } from '../../../../auth/services/auth.service';
 
 @Component({
@@ -11,9 +11,11 @@ import { AuthService } from '../../../../auth/services/auth.service';
 })
 export class CotizacionComponent implements OnInit {
 
-  listaCotizaciones: Cotizacion[] = [];
-  idEmpresa: number = 0;
   cotizacion: boolean = true;
+  idEmpresa: number = 0;
+  trabajador: number = 0;
+  listaCotizaciones: Cotizacion[] = [];
+  listaColaboradores: Colaboradores[] = [];
 
   constructor(private eService: EmpresaService, private authService: AuthService) { }
 
@@ -29,8 +31,14 @@ export class CotizacionComponent implements OnInit {
               this.cotizacion = false;
             }
             this.listaCotizaciones = resp;
-
           })
+
+        this.eService.listarColaboradoresCotizacion(this.idEmpresa)
+          .subscribe(resp => {
+            this.listaColaboradores = resp;
+          })
+
+
 
       })
   }
@@ -38,8 +46,9 @@ export class CotizacionComponent implements OnInit {
 
   aceptarCotizacion(id: number, idControl: number) {
     const decision: string = 'Aceptada';
+    const colaborador: number = this.trabajador;
 
-    this.eService.resolverCotizacion({ id, decision })
+    this.eService.resolverCotizacion({ id, decision, colaborador })
       .subscribe(resp => {
         this.listaCotizaciones.splice(idControl, 1);
         if (this.listaCotizaciones.length == 0) {
