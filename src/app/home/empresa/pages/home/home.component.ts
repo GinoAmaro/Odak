@@ -12,6 +12,7 @@ export class HomeComponent implements OnInit {
 
   idEmpresa: number = 0;
   cantidadCotizacion: number = 0;
+  cantidadTareasPendientes: number = 0;
 
   constructor(private eService: EmpresaService, private authService: AuthService) { }
 
@@ -21,10 +22,15 @@ export class HomeComponent implements OnInit {
     this.authService.validarToken(token!)
       .subscribe(resp => {
         this.idEmpresa = resp[0]['empresa'];
-        
+
         this.eService.contarCotizacion(this.idEmpresa)
           .subscribe(resp => {
             this.cantidadCotizacion = resp[0]['cantidad'];
+          })
+
+        this.eService.contarTareas(this.idEmpresa)
+          .subscribe(resp => {
+            this.cantidadTareasPendientes = resp[0].cantidad;
           })
       })
 

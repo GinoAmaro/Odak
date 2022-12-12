@@ -26,25 +26,25 @@
                                 </svg>
                             </div>
                             <div class="d-sm-none">
-                                <h2 class="h5">Clientes</h2>
-                                <h3 class="fw-extrabold mb-1">24</h3>
                             </div>
                         </div>
                         <div class="col-12 col-xl-7 px-xl-0">
                             <div class="d-none d-sm-block">
-                                <h2 class="h6 text-gray-400 mb-0">Tareas en proceso
+                                <h2 class="h6 text-gray-400 mb-0" *ngIf="cantidadTareasPendientes > 0">Tareas en proceso
                                 </h2>
-                                <h3 class="fw-extrabold mb-2">24</h3>
+                                <h2 class="h6 text-gray-400 mb-0" *ngIf="cantidadTareasPendientes <= 0"></h2>
+                                <h3 class="fw-extrabold mb-2" *ngIf="cantidadTareasPendientes > 0">
+                                    {{cantidadTareasPendientes}}</h3>
+                                <h5 class="fw-extrabold mb-2" *ngIf="cantidadTareasPendientes <= 0">No hay tareas
+                                    pendientes</h5>
                             </div>
                             <small class="d-flex align-items-center text-gray-500">
-                                Mar 22 - Oct 01,
-
                                 <svg class="icon icon-xxs text-gray-500 ms-2 me-1" fill="currentColor"
                                     viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
                                     <path fill-rule="evenodd"
                                         d="M8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10zm0-7a3 3 0 1 1 0-6 3 3 0 0 1 0 6z"
                                         clip-rule="evenodd"></path>
-                                </svg> Rancagua
+                                </svg>Rancagua
                             </small>
                             <div class="small d-flex mt-1">
                                 <div>Promedio Mensual<svg class="icon icon-xs text-success" fill="currentColor"
@@ -83,17 +83,16 @@
                                 <h2 class="h6 text-gray-400 mb-0" *ngIf="cantidadCotizacion > 0">Cotizaciones</h2>
                                 <h2 class="h6 text-gray-400 mb-0" *ngIf="cantidadCotizacion <=  0"></h2>
                                 <h3 class="fw-extrabold mb-2" *ngIf="cantidadCotizacion > 0">{{cantidadCotizacion}}</h3>
-                                <h5 class="fw-extrabold mb-2" *ngIf="cantidadCotizacion <=  0">No hay nuevas cotizaciones</h5>
+                                <h5 class="fw-extrabold mb-2" *ngIf="cantidadCotizacion <=  0">No hay nuevas
+                                    cotizaciones</h5>
                             </div>
                             <small class="d-flex align-items-center text-gray-500">
-                                Mar 22 - Oct 01,
-
                                 <svg class="icon icon-xxs text-gray-500 ms-2 me-1" fill="currentColor"
                                     viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
                                     <path fill-rule="evenodd"
                                         d="M8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10zm0-7a3 3 0 1 1 0-6 3 3 0 0 1 0 6z"
                                         clip-rule="evenodd"></path>
-                                </svg> Rancagua
+                                </svg>Rancagua
                             </small>
                             <div class="small d-flex mt-1">
                                 <div>Promedio Mensual <svg class="icon icon-xs text-danger" fill="currentColor"

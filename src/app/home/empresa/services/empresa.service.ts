@@ -83,6 +83,11 @@ export class EmpresaService {
     return this.http.get<ContarCotizacion[]>(url + id)
   }
 
+  contarTareas(id: number): Observable<ContarCotizacion[]> {
+    const url = this.baseUrl + "?contarTareas=";
+    return this.http.get<ContarCotizacion[]>(url + id)
+  }
+
   grillaEmpresa(consulta: string) {
     const url = this.baseUrl + "?grillaEmpresa=";
     return this.http.get<Empresa[]>(url + consulta)
